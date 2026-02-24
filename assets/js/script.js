@@ -1,75 +1,100 @@
 $(function () {
+  const hoverToggle = ($el, $target, ms) =>
+    $el.hover(
+      () => $target.stop(true, true).slideDown(ms),
+      () => $target.stop(true, true).slideUp(ms)
+    );
 
-  /* ── GNB 서브메뉴 (데스크탑 hover) ── */
-  $(".has-sub").hover(
-    function () { $(this).children(".sub-menu").stop(true, true).slideDown(200); },
-    function () { $(this).children(".sub-menu").stop(true, true).slideUp(200); }
-  );
+  hoverToggle($(".has-sub"), $(".has-sub > .sub-menu"), 200);
+  hoverToggle($(".locale"), $(".locale .locale-list"), 150);
 
-  /* ── 언어 드롭다운 ── */
-  $(".locale").hover(
-    function () { $(this).find(".locale-list").stop(true, true).slideDown(150); },
-    function () { $(this).find(".locale-list").stop(true, true).slideUp(150); }
-  );
-
-  /* ── 슬라이드 ── */
-  let i = 0;
+  const $slide = $(".slide");
   const $track = $(".slide-track");
   const len = $(".slide-container").length;
+  let i = 0, timer;
 
-  function move(n) {
+  const move = (n) => {
     i = (n + len) % len;
-    $track.css("transform", "translateX(-" + (i * 100) + "%)");
-  }
+    $track.css("transform", `translateX(-${i * 100}%)`);
+  };
 
-  let timer = setInterval(() => move(i + 1), 4000);
+  const auto = (on) => {
+    clearInterval(timer);
+    if (on) timer = setInterval(() => move(i + 1), 4000);
+  };
 
-  $(".slide-nav.next").click(() => move(i + 1));
-  $(".slide-nav.prev").click(() => move(i - 1));
+  $(".slide-nav.next").on("click", () => move(i + 1));
+  $(".slide-nav.prev").on("click", () => move(i - 1));
+  $slide.hover(() => auto(false), () => auto(true));
+  auto(true);
 
-  $(".slide").hover(
-    () => clearInterval(timer),
-    () => { timer = setInterval(() => move(i + 1), 4000); }
-  );
+  const setDrawer = (open) => {
+    $(".mob-drawer").toggleClass("is-open", open);
+    $(".mob-overlay");
+    $("body").toggleClass("mob-lock", open);
+    $(".hamburger i").toggleClass("fa-bars", !open).toggleClass("fa-xmark", open);
 
-  function openDrawer() {
-    $(".mob-drawer").addClass("is-open");
-    $(".mob-overlay").fadeIn(250);
-    $("body").addClass("mob-lock");
-    $(".hamburger i").removeClass("fa-bars").addClass("fa-xmark");
-  }
+    if (!open) {
+      $(".mob-sub").slideUp(200);
+      $(".mob-has-sub").removeClass("is-active");
+    }
+  };
 
-  function closeDrawer() {
-    $(".mob-drawer").removeClass("is-open");
-    $(".mob-overlay").fadeOut(250);
-    $("body").removeClass("mob-lock");
-    $(".hamburger i").removeClass("fa-xmark").addClass("fa-bars");
-    $(".mob-sub").slideUp(200);
-    $(".mob-has-sub").removeClass("is-active");
-  }
-
-  $(".hamburger").click(openDrawer);
-  $(".mob-overlay").click(closeDrawer);
-  $(".mob-close").click(closeDrawer);
-
-  $(document).keydown(function (e) {
-    if (e.key === "Escape") closeDrawer();
-  });
+  $(".hamburger").on("click", () => setDrawer(true));
+  $(".mob-overlay, .mob-close").on("click", () => setDrawer(false));
+  $(document).on("keydown", (e) => e.key === "Escape" && setDrawer(false));
+  $(window).on("resize", () => $(window).width() > 540 && setDrawer(false));
 
   $(document).on("click", ".mob-has-sub > .mob-link", function (e) {
     e.preventDefault();
-    const $sub  = $(this).siblings(".mob-sub");
-    const isOpen = $(this).parent().hasClass("is-active");
+    const $parent = $(this).parent();
+    const $sub = $(this).siblings(".mob-sub");
 
-    $(".mob-has-sub").not($(this).parent()).removeClass("is-active");
+    $(".mob-has-sub").not($parent).removeClass("is-active");
     $(".mob-sub").not($sub).slideUp(200);
 
-    $(this).parent().toggleClass("is-active", !isOpen);
+    $parent.toggleClass("is-active");
     $sub.stop(true, true).slideToggle(220);
   });
 
-  $(window).resize(function () {
-    if ($(window).width() > 540) closeDrawer();
-  });
+  const $viewport = $(".service-right");
+  const $cards = $viewport.find(".service-card");
+  const $prev = $(".service-left-btn");
+  const $next = $(".service-right-btn");
 
+  if ($viewport.length && $cards.length && $prev.length && $next.length) {
+    const $svcTrack = $("<div class='service-track'></div>");
+    $cards.appendTo($svcTrack);
+    $viewport.append($svcTrack);
+
+    let idx = 0;
+
+    const perView = () => {
+      const w = $(window).width();
+      if (w <= 768) return 1;
+      if (w <= 1024) return 2;
+      return 3;
+    };
+
+    const maxIdx = () => Math.max(0, $svcTrack.find(".service-card").length - perView());
+    const step = () => {
+      const $first = $svcTrack.find(".service-card").first();
+      const gap = parseFloat($svcTrack.css("gap")) || 0;
+      return $first.outerWidth() + gap;
+    };
+
+    const render = () => {
+      const max = maxIdx();
+      idx = Math.min(Math.max(idx, 0), max);
+
+      $svcTrack.css("transform", `translateX(${-idx * step()}px)`);
+      $prev.prop("disabled", idx === 0).css("opacity", idx === 0 ? 0.35 : 1);
+      $next.prop("disabled", idx === max).css("opacity", idx === max ? 0.35 : 1);
+    };
+
+    $prev.on("click", () => (idx--, render()));
+    $next.on("click", () => (idx++, render()));
+    $(window).on("resize", render);
+    render();
+  }
 });

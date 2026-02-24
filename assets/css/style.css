@@ -404,6 +404,151 @@ button{
   font-weight: 700;
 }
 
+.service{
+  background:#fff;
+  padding: 90px 0;
+}
+
+.service-container{
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.service-left{
+  display:flex;
+  flex-direction:column;
+  gap: 18px;
+}
+
+.service-main{
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--fontmain);
+}
+
+.service-desc{
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(0,0,0,.62);
+}
+
+.service-line{
+  width: 100%;
+  height: 1px;
+  background: rgba(0,0,0,.22);
+}
+
+.service-nav{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+}
+
+.service-nav::before{
+  content:"";
+  flex: 1;
+  height: 2px;
+  background: rgba(0,0,0,.18);
+  order: 2;
+}
+
+.service-left-btn{ order: 1; }
+.service-right-btn{ order: 3; }
+
+.service-left-btn,
+.service-right-btn{
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  border-radius: 999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 18px;
+  color: var(--fontmain);
+  cursor:pointer;
+  transition: background .2s ease, transform .2s ease, opacity .2s ease;
+}
+
+.service-left-btn:hover,
+.service-right-btn:hover{
+  background: rgba(0,0,0,.06);
+  transform: translateY(-1px);
+}
+
+/* 슬라이더 영역(뷰포트) */
+.service-right{
+  position: relative;
+  overflow: hidden;
+}
+
+/* 트랙 */
+.service-track{
+  display: flex;
+  gap: 28px;
+  will-change: transform;
+  transition: transform .45s ease;
+}
+
+/* 카드 */
+.service-card{
+  position: relative;
+  flex: 0 0 calc((100% - 56px) / 3); /* 3장 + gap 2개 */
+  height: 420px;
+  overflow: hidden;
+  text-decoration:none;
+  color:#fff;
+}
+
+.service-card img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+
+.service-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.55) 0%,
+    rgba(0,0,0,.25) 35%,
+    rgba(0,0,0,.10) 100%
+  );
+}
+
+.service-copy{
+  position:absolute;
+  left: 18px;
+  top: 18px;
+  z-index: 2;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.service-no{
+  position:absolute;
+  left: 18px;
+  bottom: 18px;
+  z-index: 2;
+  font-weight: 800;
+  font-size: 34px;
+  letter-spacing: -0.02em;
+}
+
+
 @media (max-width: 1280px) {
 
   .menu {
