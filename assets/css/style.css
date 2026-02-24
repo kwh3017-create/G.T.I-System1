@@ -428,14 +428,14 @@ button{
 }
 
 .service-main{
-  font-size: 56px;
+  font-size: 48px;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--fontmain);
 }
 
 .service-desc{
-  font-size: 18px;
+  font-size: 24px;
   line-height: 1.7;
   color: rgba(0,0,0,.62);
 }
