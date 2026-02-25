@@ -1103,16 +1103,14 @@ body.mob-lock {
   transform: translate(0, -50%);
   transition: transform .45s ease;
 }
-/* =============================================
-   Service Section Responsive
-   1280 / 1024 / 768 / 540 / 414
-============================================= */
 
-/* ── 1280 ── */
 @media (max-width: 1280px) {
   .service-container {
     grid-template-columns: 300px 1fr;
     gap: 36px;
+  }
+  .service-left{
+    height: 500px;
   }
   .service-main { font-size: 40px; }
   .service-desc { font-size: 20px; }
@@ -1125,6 +1123,9 @@ body.mob-lock {
   .service-container {
     grid-template-columns: 260px 1fr;
     gap: 28px;
+  }
+   .service-left{
+    height: 450px;
   }
   .service-main { font-size: 34px; }
   .service-desc { font-size: 18px; }
