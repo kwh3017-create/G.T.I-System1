@@ -61,12 +61,13 @@ button{
 }
 
 .logo{
-  width: 190px;
-  flex: 0 0 auto;
+  font-size: 24px;
+  font-weight: 800;
 }
 
-.logo img{
-    width: 100%;
+.logo-point
+{
+  color: var(--point);
 }
 
 .gnb{
@@ -418,13 +419,15 @@ button{
   display: grid;
   grid-template-columns: 360px 1fr;
   gap: 48px;
-  align-items: center;
+  align-items: start;
 }
 
 .service-left{
   display:flex;
   flex-direction:column;
-  gap: 18px;
+  gap: 16px;
+  height: 550px;
+  justify-content: space-between;
 }
 
 .service-main{
@@ -449,7 +452,8 @@ button{
 .service-nav{
   display:flex;
   align-items:center;
-  gap: 14px;
+  gap: 16px;
+  position: relative;
 }
 
 .service-nav::before{
@@ -485,13 +489,12 @@ button{
   transform: translateY(-1px);
 }
 
-/* 슬라이더 영역(뷰포트) */
 .service-right{
   position: relative;
+  padding-top: 8px;
   overflow: hidden;
 }
 
-/* 트랙 */
 .service-track{
   display: flex;
   gap: 28px;
@@ -499,14 +502,13 @@ button{
   transition: transform .45s ease;
 }
 
-/* 카드 */
 .service-card{
   position: relative;
-  flex: 0 0 calc((100% - 56px) / 3); /* 3장 + gap 2개 */
-  height: 420px;
+  flex: 0 0 420px;
+  height: 550px;
   overflow: hidden;
-  text-decoration:none;
-  color:#fff;
+  text-decoration: none;
+  color: #fff;
 }
 
 .service-card img{
@@ -533,8 +535,7 @@ button{
   left: 18px;
   top: 18px;
   z-index: 2;
-  font-weight: 700;
-  font-size: 18px;
+  font-size: 28px;
   line-height: 1.4;
 }
 
@@ -544,10 +545,14 @@ button{
   bottom: 18px;
   z-index: 2;
   font-weight: 800;
-  font-size: 34px;
+  font-size: 50px;
   letter-spacing: -0.02em;
 }
 
+.service-strong
+{
+  font-weight: 800;
+}
 
 @media (max-width: 1280px) {
 
@@ -1039,4 +1044,62 @@ body.mob-lock {
   .page-main-h2{
     bottom: 16px !important;
   }
+}
+
+.service-left .service-line:first-of-type{
+  width: 100%;
+}
+
+.service-main{
+  position: relative;
+  padding-top: 12px;
+}
+.service-main::before{
+  position:absolute;
+  left: 0;
+  top: 0;
+  width: 12px;
+  height: 4px;
+  transform: rotate(-45deg);
+  transform-origin: left center;
+}
+
+.service-nav::after{
+  content:"";
+  position:absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 88px;
+  height: 2px;
+  background: rgba(0,0,0,.85);
+  pointer-events:none;
+}
+
+
+.service-right{
+  overflow: hidden;
+}
+
+.service-nav{ display:flex; align-items:center; gap:16px; position:relative; }
+
+.service-nav::before{ content:none; }
+.service-nav::after{ content:none; }
+
+.service-progress{
+  flex: 1;
+  height: 2px;
+  background: rgba(0,0,0,.18);
+  position: relative;
+}
+
+.service-indicator{
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 88px;
+  height: 2px;
+  background: rgba(0,0,0,.85);
+  transform: translate(0, -50%);
+  transition: transform .45s ease;
 }

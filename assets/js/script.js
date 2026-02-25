@@ -57,44 +57,112 @@ $(function () {
     $sub.stop(true, true).slideToggle(220);
   });
 
-  const $viewport = $(".service-right");
-  const $cards = $viewport.find(".service-card");
+  /* =============================================
+     Service Slider
+  ============================================= */
+  const DURATION = 450;
+
+  const $vp   = $(".service-right");
+  const $trk  = $vp.find(".service-track");
   const $prev = $(".service-left-btn");
   const $next = $(".service-right-btn");
+  const $prog = $(".service-progress");
+  const $ind  = $(".service-indicator");
 
-  if ($viewport.length && $cards.length && $prev.length && $next.length) {
-    const $svcTrack = $("<div class='service-track'></div>");
-    $cards.appendTo($svcTrack);
-    $viewport.append($svcTrack);
+  if ($vp.length && $trk.length && $prev.length && $next.length) {
 
-    let idx = 0;
+    const $real = $trk.find(".service-card");
+    const n = $real.length;
 
-    const perView = () => {
-      const w = $(window).width();
-      if (w <= 768) return 1;
-      if (w <= 1024) return 2;
-      return 3;
+    if (n >= 2) {
+      $trk.prepend($real.last().clone(true));
+      $trk.append($real.first().clone(true));
+    }
+
+    let idx      = (n >= 2) ? 1 : 0;
+    let moving   = false;
+    let svcTimer = null;
+
+    // 캐싱 없이 항상 DOM에서 직접 계산 (이미지 로드 후에도 정확한 값 보장)
+    const getStep = () => {
+      const gap = parseFloat($trk.css("gap")) || 0;
+      return $trk.find(".service-card").first().outerWidth() + gap;
     };
 
-    const maxIdx = () => Math.max(0, $svcTrack.find(".service-card").length - perView());
-    const step = () => {
-      const $first = $svcTrack.find(".service-card").first();
-      const gap = parseFloat($svcTrack.css("gap")) || 0;
-      return $first.outerWidth() + gap;
+    const go = (to, animate) => {
+      const step = getStep();
+      $trk.css("transition", animate ? `transform ${DURATION}ms ease` : "none");
+      if (!animate) $trk[0].getBoundingClientRect(); // reflow 강제
+      $trk.css("transform", `translateX(${-to * step}px)`);
     };
 
-    const render = () => {
-      const max = maxIdx();
-      idx = Math.min(Math.max(idx, 0), max);
-
-      $svcTrack.css("transform", `translateX(${-idx * step()}px)`);
-      $prev.prop("disabled", idx === 0).css("opacity", idx === 0 ? 0.35 : 1);
-      $next.prop("disabled", idx === max).css("opacity", idx === max ? 0.35 : 1);
+    const realIndex = () => {
+      if (n <= 1) return 0;
+      let r = idx - 1;
+      if (r < 0) r = n - 1;
+      if (r >= n) r = 0;
+      return r;
     };
 
-    $prev.on("click", () => (idx--, render()));
-    $next.on("click", () => (idx++, render()));
-    $(window).on("resize", render);
-    render();
+    const moveIndicator = () => {
+      if (!$prog.length || !$ind.length || n <= 1) return;
+      const maxX = Math.max(0, $prog.width() - $ind.outerWidth());
+      const t    = realIndex() / Math.max(1, n - 1);
+      $ind.css("transform", `translate(${maxX * t}px, -50%)`);
+    };
+
+    const jumpTo = (to) => {
+      idx = to;
+      go(idx, false);
+      moveIndicator();
+    };
+
+    const next = () => {
+      if (moving || n <= 1) return;
+      moving = true;
+      idx++;
+      go(idx, true);
+      moveIndicator();
+      setTimeout(() => {
+        if (idx >= n + 1) jumpTo(1);
+        moving = false;
+      }, DURATION);
+    };
+
+    const prev = () => {
+      if (moving || n <= 1) return;
+      moving = true;
+      idx--;
+      go(idx, true);
+      moveIndicator();
+      setTimeout(() => {
+        if (idx <= 0) jumpTo(n);
+        moving = false;
+      }, DURATION);
+    };
+
+    const autoSvc = (on) => {
+      clearInterval(svcTimer);
+      if (on && n > 1) svcTimer = setInterval(next, 3000);
+    };
+
+    $next.off("click").on("click", () => { autoSvc(false); next(); autoSvc(true); });
+    $prev.off("click").on("click", () => { autoSvc(false); prev(); autoSvc(true); });
+    $vp.hover(() => autoSvc(false), () => autoSvc(true));
+    $(window).on("resize", () => jumpTo(idx));
+
+    // 이미지가 완전히 로드된 뒤 초기화 (카드 너비 확정 후 step 계산)
+    const init = () => { jumpTo(idx); autoSvc(true); };
+    const $imgs = $trk.find("img");
+    let loaded = 0;
+    const onLoad = () => { if (++loaded >= $imgs.length) init(); };
+    if ($imgs.length === 0) {
+      init();
+    } else {
+      $imgs.each(function () {
+        if (this.complete) { onLoad(); }
+        else { $(this).one("load error", onLoad); }
+      });
+    }
   }
 });
