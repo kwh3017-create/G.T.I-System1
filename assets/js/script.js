@@ -181,4 +181,103 @@ $(function () {
     moveIndicator();
     autoSvc(true);
   }
+
+
+  /* =============================================
+     PC Order Slider (seamless)
+     - 카드 1칸씩 이동 + transitionend에서 DOM 재배치
+     - viewport 안에서 4/3/2/1칸(반응형) 노출
+  ============================================= */
+  const $pcTrk  = $(".pc-order-track");
+  const $pcPrev = $(".pc-order-nav.prev");
+  const $pcNext = $(".pc-order-nav.next");
+
+  if ($pcTrk.length && $pcPrev.length && $pcNext.length) {
+
+    const $items = () => $pcTrk.children(".pc-order-item");
+    const duration = 550;
+    let moving = false;
+    let pcTimer = null;
+
+    const getGap = () => {
+      const st = window.getComputedStyle($pcTrk[0]);
+      const g  = parseFloat(st.columnGap || st.gap || "0");
+      return isNaN(g) ? 0 : g;
+    };
+
+    const stepPx = () => {
+      const $first = $items().first();
+      if (!$first.length) return 0;
+      return $first.outerWidth() + getGap();
+    };
+
+    const setTransition = (on) => {
+      $pcTrk.css("transition", on ? `transform ${duration}ms ease` : "none");
+    };
+
+    const nextPc = () => {
+      if (moving || $items().length <= 1) return;
+      moving = true;
+
+      const d = stepPx();
+      if (!d) { moving = false; return; }
+
+      setTransition(true);
+      $pcTrk.css("transform", `translateX(-${d}px)`);
+
+      $pcTrk.one("transitionend webkitTransitionEnd", function(){
+        $items().first().appendTo($pcTrk);
+
+        setTransition(false);
+        $pcTrk.css("transform", "translateX(0)");
+        $pcTrk[0].offsetHeight; // reflow
+        setTransition(true);
+
+        moving = false;
+      });
+    };
+
+    const prevPc = () => {
+      if (moving || $items().length <= 1) return;
+      moving = true;
+
+      const d = stepPx();
+      if (!d) { moving = false; return; }
+
+      $items().last().prependTo($pcTrk);
+
+      setTransition(false);
+      $pcTrk.css("transform", `translateX(-${d}px)`);
+      $pcTrk[0].offsetHeight;
+
+      setTransition(true);
+      $pcTrk.css("transform", "translateX(0)");
+
+      $pcTrk.one("transitionend webkitTransitionEnd", function(){
+        moving = false;
+      });
+    };
+
+    const autoPc = (on) => {
+      clearInterval(pcTimer);
+      if (on) pcTimer = setInterval(nextPc, 3500);
+    };
+
+    $pcNext.off("click").on("click", () => { autoPc(false); nextPc(); autoPc(true); });
+    $pcPrev.off("click").on("click", () => { autoPc(false); prevPc(); autoPc(true); });
+
+    $(".pc-order-viewport").hover(() => autoPc(false), () => autoPc(true));
+
+    $(window).on("resize", () => {
+      setTransition(false);
+      $pcTrk.css("transform", "translateX(0)");
+      $pcTrk[0].offsetHeight;
+      setTransition(true);
+    });
+
+    setTransition(true);
+    autoPc(true);
+  }
+
+
 });
