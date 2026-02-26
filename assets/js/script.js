@@ -58,111 +58,127 @@ $(function () {
   });
 
   /* =============================================
-     Service Slider
+     Service Slider (seamless)
+     - transform 슬라이드 + transitionend에서 DOM 재배치
+     - 끊김(점프) 없이 자연스럽게 무한 루프
   ============================================= */
-  const DURATION = 450;
-
-  const $vp   = $(".service-right");
-  const $trk  = $vp.find(".service-track");
+  const $trk  = $(".service-track");
   const $prev = $(".service-left-btn");
   const $next = $(".service-right-btn");
   const $prog = $(".service-progress");
   const $ind  = $(".service-indicator");
 
-  if ($vp.length && $trk.length && $prev.length && $next.length) {
+  if ($trk.length && $prev.length && $next.length) {
 
-    const $real = $trk.find(".service-card");
-    const n = $real.length;
+    const $cards = () => $trk.children(".service-card");
+    const totalN = $cards().length;
 
-    if (n >= 2) {
-      $trk.prepend($real.last().clone(true));
-      $trk.append($real.first().clone(true));
-    }
+    // 원본 순서 인덱스(인디케이터용)
+    $cards().each(function(i){ $(this).attr("data-svc-idx", i); });
 
-    let idx      = (n >= 2) ? 1 : 0;
+    const duration = 650; // ms
     let moving   = false;
     let svcTimer = null;
 
-    // 캐싱 없이 항상 DOM에서 직접 계산 (이미지 로드 후에도 정확한 값 보장)
-    const getStep = () => {
-      const gap = parseFloat($trk.css("gap")) || 0;
-      return $trk.find(".service-card").first().outerWidth() + gap;
+    // flex gap(px) 구하기
+    const getGap = () => {
+      const st = window.getComputedStyle($trk[0]);
+      const g  = parseFloat(st.columnGap || st.gap || "0");
+      return isNaN(g) ? 0 : g;
     };
 
-    const go = (to, animate) => {
-      const step = getStep();
-      $trk.css("transition", animate ? `transform ${DURATION}ms ease` : "none");
-      if (!animate) $trk[0].getBoundingClientRect(); // reflow 강제
-      $trk.css("transform", `translateX(${-to * step}px)`);
-    };
-
-    const realIndex = () => {
-      if (n <= 1) return 0;
-      let r = idx - 1;
-      if (r < 0) r = n - 1;
-      if (r >= n) r = 0;
-      return r;
+    // 한 칸 이동 거리(px) = 카드 폭 + gap
+    const stepPx = () => {
+      const $first = $cards().first();
+      if (!$first.length) return 0;
+      return $first.outerWidth() + getGap();
     };
 
     const moveIndicator = () => {
-      if (!$prog.length || !$ind.length || n <= 1) return;
+      if (!$prog.length || !$ind.length || totalN <= 1) return;
+      const cur  = parseInt($cards().first().attr("data-svc-idx") || 0, 10);
       const maxX = Math.max(0, $prog.width() - $ind.outerWidth());
-      const t    = realIndex() / Math.max(1, n - 1);
+      const t    = cur / Math.max(1, totalN - 1);
       $ind.css("transform", `translate(${maxX * t}px, -50%)`);
     };
 
-    const jumpTo = (to) => {
-      idx = to;
-      go(idx, false);
-      moveIndicator();
+    const setTransition = (on) => {
+      $trk.css("transition", on ? `transform ${duration}ms ease` : "none");
     };
 
-    const next = () => {
-      if (moving || n <= 1) return;
+    const nextSlide = () => {
+      if (moving || totalN <= 1) return;
       moving = true;
-      idx++;
-      go(idx, true);
-      moveIndicator();
-      setTimeout(() => {
-        if (idx >= n + 1) jumpTo(1);
+
+      const d = stepPx();
+      if (!d) { moving = false; return; }
+
+      setTransition(true);
+      $trk.css("transform", `translateX(-${d}px)`);
+
+      $trk.one("transitionend webkitTransitionEnd", function(){
+        // 1) 첫 카드를 맨 뒤로
+        $cards().first().appendTo($trk);
+
+        // 2) transition 없이 원위치로 스냅(사용자는 못 느낌)
+        setTransition(false);
+        $trk.css("transform", "translateX(0)");
+
+        // 3) reflow 후 transition 복원
+        $trk[0].offsetHeight; // force reflow
+        setTransition(true);
+
+        moveIndicator();
         moving = false;
-      }, DURATION);
+      });
     };
 
-    const prev = () => {
-      if (moving || n <= 1) return;
+    const prevSlide = () => {
+      if (moving || totalN <= 1) return;
       moving = true;
-      idx--;
-      go(idx, true);
-      moveIndicator();
-      setTimeout(() => {
-        if (idx <= 0) jumpTo(n);
+
+      const d = stepPx();
+      if (!d) { moving = false; return; }
+
+      // 1) 마지막 카드를 맨 앞으로 미리 당겨놓고
+      $cards().last().prependTo($trk);
+
+      // 2) transition 없이 -d 위치에서 시작
+      setTransition(false);
+      $trk.css("transform", `translateX(-${d}px)`);
+      $trk[0].offsetHeight; // force reflow
+
+      // 3) transition 켜고 0으로 돌아오면 자연스러운 prev
+      setTransition(true);
+      $trk.css("transform", "translateX(0)");
+
+      $trk.one("transitionend webkitTransitionEnd", function(){
+        moveIndicator();
         moving = false;
-      }, DURATION);
+      });
     };
 
     const autoSvc = (on) => {
       clearInterval(svcTimer);
-      if (on && n > 1) svcTimer = setInterval(next, 3000);
+      if (on && totalN > 1) svcTimer = setInterval(nextSlide, 3000);
     };
 
-    $next.off("click").on("click", () => { autoSvc(false); next(); autoSvc(true); });
-    $prev.off("click").on("click", () => { autoSvc(false); prev(); autoSvc(true); });
-    $vp.hover(() => autoSvc(false), () => autoSvc(true));
-    $(window).on("resize", () => jumpTo(idx));
+    $next.off("click").on("click", () => { autoSvc(false); nextSlide(); autoSvc(true); });
+    $prev.off("click").on("click", () => { autoSvc(false); prevSlide(); autoSvc(true); });
+    $(".service-right").hover(() => autoSvc(false), () => autoSvc(true));
 
-    // 이미지가 완전히 로드된 뒤 초기화 (카드 너비 확정 후 step 계산)
-    const init = () => { jumpTo(idx); autoSvc(true); };
-    const $imgs = $trk.find("img");
-    let loaded = 0;
-    const onLoad = () => { if (++loaded >= $imgs.length) init(); };
-    if ($imgs.length === 0) {
-      init();
-    } else {
-      $imgs.each(function () {
-        if (this.complete) { onLoad(); }
-        else { $(this).one("load error", onLoad); }
-      });
-    }
+    $(window).on("resize", () => {
+      // 리사이즈 시 위치 꼬임 방지
+      setTransition(false);
+      $trk.css("transform", "translateX(0)");
+      $trk[0].offsetHeight;
+      setTransition(true);
+      moveIndicator();
+    });
+
+    // 초기화
+    setTransition(true);
+    moveIndicator();
+    autoSvc(true);
   }
 });
