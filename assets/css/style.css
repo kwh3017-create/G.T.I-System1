@@ -1040,25 +1040,59 @@ body.mob-lock{
   transform: translateY(-50%) scale(1.04);
 }
 
-/* responsive: 3/2/1 columns */
+/* responsive: 4 / 3 / 3 / 2 columns */
+@media (max-width: 1280px){
+  .pc-order-track{ --cols: 4; }
+}
+
 @media (max-width: 1024px){
   .pc-order-track{ --cols: 3; }
   .pc-order-main{ font-size: 36px; }
 }
 
+/* ✅ 768: 1번째 레이아웃처럼 3개 */
 @media (max-width: 768px){
-  .pc-order-track{ --cols: 2; }
+  .pc-order-track{ --cols: 3; --gap: 18px; }
   .pc-order-main{ font-size: 32px; }
+
+  /* 카드가 1번째 사진처럼 조금 더 커 보이게 */
+  .pc-order-img{ padding: 20px 16px 10px; }
+  .pc-order-img img{ height: 160px; max-width: 210px; }
+
+  /* 폰트 14px 아래 금지 유지 */
+  .pc-spec-io{ font-size: 14px; }
+  .pc-price{ font-size: 14px; }
+  .pc-order-note{ font-size: 14px; }
 }
 
+/* ✅ 540~414: 2번째 레이아웃처럼 2개 */
 @media (max-width: 540px){
-  .pc-order-track{ --cols: 1; }
+  .pc-order-track{ --cols: 2; --gap: 14px; }
   .pc-order-item{ min-width: 0; }
-  .pc-order-nav.prev{ left: 10px; }
-  .pc-order-nav.next{ right: 10px; }
+
+  /* 컴팩트 카드 */
+  .pc-order-card{ border-radius: 16px; }
+  .pc-order-img{ padding: 16px 12px 6px; }
+  .pc-order-img img{ height: 120px; max-width: 160px; }
+  .pc-order-info{ padding: 12px 12px 14px; }
+
+  /* 화살표는 안쪽으로 */
   .pc-order-nav{
+    width: 40px; height: 40px;
     background: rgba(255,255,255,.92);
     box-shadow: 0 10px 22px rgba(0,0,0,.16);
   }
+  .pc-order-nav.prev{ left: 8px; }
+  .pc-order-nav.next{ right: 8px; }
+
+  /* 폰트 14px 아래 금지 */
+  .pc-order-name{ font-size: 16px; }
+  .pc-spec-io{ font-size: 14px; }
+  .pc-price{ font-size: 14px; }
+  .pc-order-note{ font-size: 14px; }
 }
 
+/* ✅ 414도 동일하게 2개 유지(안전망) */
+@media (max-width: 414px){
+  .pc-order-track{ --cols: 2; --gap: 12px; }
+}
