@@ -312,4 +312,36 @@ $(function () {
   initServiceSlider();
   initPcOrderSlider();
   initReviewSlider();
+
+var swiper = new Swiper(".eventSwiper", {
+
+  slidesPerView: 4,
+  spaceBetween: 20,
+  grabCursor: true,
+
+  breakpoints: {
+
+    1280: {
+      slidesPerView: 4
+    },
+
+    1024: {
+      slidesPerView: 4
+    },
+
+    768: {
+      slidesPerView: 3
+    },
+
+    540: {
+      slidesPerView: 2.5
+    },
+
+    414: {
+      slidesPerView: 2.5
+    }
+
+  }
+
+});
 });
