@@ -999,7 +999,7 @@ font-weight:700;
   display: grid;
   grid-template-columns: 72px 1fr;
   gap: 10px;
-  font-size: 18px;
+  font-size: px;
   line-height: 1.6;
   color: var(--fontsub);
 }
@@ -1278,12 +1278,7 @@ font-weight:700;
   white-space: nowrap;
 }
 .buy-btn:hover { background: #2E54B5; }
-@media (max-width: 640px) {
-  .popup-box { flex-direction: column; max-height: 95vh; }
-  .popup-left { flex: 0 0 180px; }
-  .popup-right { padding: 18px 16px 14px; }
-  .popup-bottom { flex-direction: column; align-items: stretch; text-align: center; }
-}
+
 
 @media (max-width: 1280px) {
   .menu { gap: 28px; }
@@ -1717,6 +1712,26 @@ font-weight:700;
   height:36px;
   font-size:15px;
 }
+
+  .popup-box { 
+    flex-direction: column; 
+    max-height: 95vh; 
+  }
+  .popup-left { 
+    flex: 0 0 180px;
+   }
+
+  .popup-left img{
+    width: 200px;
+  }
+  .popup-right {
+     padding: 18px 16px 14px; 
+    }
+  .popup-bottom { 
+    flex-direction: column;
+     align-items: stretch; 
+     text-align: center;
+     }
 
 }
 
