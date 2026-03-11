@@ -1484,6 +1484,13 @@ font-weight:700;
   height:32px;
   font-size:14px;
 }
+
+.contact-top{
+  display: grid;
+  grid-template-columns: 1fr minmax(448px, 444px);
+  gap: 56px;
+  align-items: start;
+}
 }
  
 
@@ -1632,6 +1639,12 @@ font-weight:700;
     display: none;
   }
 
+  .contact-top{
+  display: grid;
+  grid-template-columns: 1fr minmax(364px, 360px);
+  gap: 56px;
+  align-items: start;
+}
 }
 
 
@@ -1832,6 +1845,39 @@ font-weight:700;
      align-items: stretch; 
      text-align: center;
      }
+
+.footer-inner{
+  display:grid;
+  grid-template-columns:1fr auto;
+  grid-template-areas:
+  "logo sns"
+  "info info";
+  gap:20px;
+}
+
+.footer-left{
+  display:contents;
+}
+
+.footer-left img{
+  grid-area:logo;
+  width:200px;
+}
+
+.company-sns-wrap{
+  grid-area:sns;
+}
+
+.company-sns{
+  display:grid;
+  grid-template-columns:repeat(2,40px);
+  gap:10px;
+}
+
+.company-info{
+  grid-area:info;
+  margin-top:10px;
+}
 
 }
 
