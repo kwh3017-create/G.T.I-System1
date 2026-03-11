@@ -1178,8 +1178,9 @@ font-weight:700;
 .review-popup-product {
   font-size: 20px;
   color: var(--fontmain);
-  margin-bottom: 16px;
+  padding: 10px 0;
   font-weight: 600;
+  
 }
 .review-popup-text {
   font-size: 18px;
