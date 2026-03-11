@@ -1224,7 +1224,7 @@ font-weight:700;
 @media (max-width: 540px) {
   .review-popup-box { flex-direction: column; }
   .review-popup-img { flex: 0 0 200px; }
-  .review-popup-name{font-size: 36px;}
+  .review-popup-name{font-size: 30px;}
 }
 .popup {
   display: none;
