@@ -398,7 +398,7 @@ $(function () {
       768:  { slidesPerView: 3 },
       540:  { slidesPerView: 2.5 },
       414:  { slidesPerView: 2.5 },
-      0: {slidesPerView: 2}
+      0:    { slidesPerView: 2 }
     }
   });
 
