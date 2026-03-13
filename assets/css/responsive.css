@@ -482,6 +482,10 @@
   gap:20px;
 }
 
+.contact-info{
+ text-align: left;
+}
+
 .footer-left{
   display:contents;
 }

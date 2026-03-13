@@ -827,3 +827,34 @@
   border: 1px solid rgba(0,0,0,.10);
   box-shadow: 0 14px 34px rgba(0,0,0,.06);
 }
+
+/* Scroll-to-top button */
+.scroll-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 44px;
+  height: 44px;
+  background: var(--point);
+  color: #fff;
+  border: 0;
+  border-radius: 50%;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s, background .2s;
+}
+
+.scroll-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scroll-top:hover {
+  background: #1e3d99;
+}

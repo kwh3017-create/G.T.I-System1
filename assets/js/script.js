@@ -535,4 +535,13 @@ $(function () {
     alert("문의 기능은 현재 준비 중입니다.");
   });
 
+  /* Scroll-to-top */
+  var $scrollTop = $("#scrollTop");
+  $(window).on("scroll", function () {
+    $scrollTop.toggleClass("visible", $(this).scrollTop() > 300);
+  });
+  $scrollTop.on("click", function () {
+    $("html, body").animate({ scrollTop: 0 }, 400);
+  });
+
 });
