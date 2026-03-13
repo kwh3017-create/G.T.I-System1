@@ -382,26 +382,26 @@
 
 .contact-title{
   font-size:26px;
-  text-align: center;
+  text-align: left;
 }
 
 .contact-sub{
   font-size:14px;
-  text-align: center;
+  text-align: left;
 }
 
 .contact-meta{
-  justify-content:center;
+  justify-content:flex-start;
 }
 
 .contact-meta li{
   grid-template-columns:1fr;
-  text-align:center;
+  text-align:left;
   font-size:14px;
 }
 
 .contact-actions{
-  justify-content:center;
+  justify-content:flex-start;
 }
 
 .contact-form{
