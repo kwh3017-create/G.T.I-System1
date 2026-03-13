@@ -5,77 +5,15 @@
 /* Sub Banner
 ---------------------------------------------- */
 .sub-banner {
-  background: #fff;
-  border-bottom: 1px solid rgba(0,0,0,.08);
-  overflow: hidden;
-}
-
-.sub-banner-inner {
-  display: flex;
-  align-items: stretch;
-  min-height: 200px;
-  gap: 0;
-}
-
-.sub-banner-left {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 48px 0;
-}
-
-.sub-breadcrumb {
-  font-size: 13px;
-  color: var(--fontsub);
-  margin-bottom: 14px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.sub-breadcrumb a {
-  color: var(--fontsub);
-}
-
-.sub-breadcrumb a:hover {
-  color: var(--point);
-}
-
-.sub-breadcrumb span {
-  color: #bbb;
-}
-
-.sub-title {
-  font-size: 42px;
-  font-weight: 800;
-  color: var(--fontmain);
-  line-height: 1.2;
-  margin-bottom: 12px;
-}
-
-.sub-desc {
-  font-size: 15px;
-  color: var(--fontsub);
-  line-height: 1.7;
-}
-
-.sub-banner-right {
-  flex: 0 0 340px;
   position: relative;
+  width: 100%;
+  height: 280px;
   overflow: hidden;
 }
 
 .sub-banner-img {
-  width: 100%;
-  height: 100%;
-  min-height: 200px;
-  background: var(--background);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #bbb;
-  font-size: 14px;
+  position: absolute;
+  inset: 0;
 }
 
 .sub-banner-img img {
@@ -83,6 +21,65 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.sub-banner-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .45);
+}
+
+.sub-banner-inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.sub-banner-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+.sub-banner-right {
+  display: none;
+}
+
+.sub-breadcrumb {
+  font-size: 13px;
+  color: rgba(255,255,255,.75);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sub-breadcrumb a {
+  color: rgba(255,255,255,.75);
+}
+
+.sub-breadcrumb a:hover {
+  color: #fff;
+}
+
+.sub-breadcrumb span {
+  color: rgba(255,255,255,.5);
+}
+
+.sub-title {
+  font-size: 42px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.sub-desc {
+  font-size: 15px;
+  color: rgba(255,255,255,.80);
+  line-height: 1.7;
 }
 
 /* About Intro
@@ -95,6 +92,7 @@
 .about-intro-inner {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 80px;
 }
 
@@ -167,7 +165,7 @@
 }
 
 .about-text {
-  flex: 1 1 auto;
+  flex: 0 1 480px;
 }
 
 .about-tag {
@@ -199,7 +197,7 @@
 ---------------------------------------------- */
 .about-mission {
   padding: 90px 0 100px;
-  background: var(--background);
+  background: #fff;
 }
 
 .mission-eyebrow {
@@ -224,42 +222,47 @@
 }
 
 .mission-card {
-  background: #fff;
-  border-radius: 20px;
-  padding: 40px 32px;
+  background: transparent;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  transition: box-shadow .25s ease, transform .25s ease;
+  gap: 0;
 }
 
-.mission-card:hover {
-  box-shadow: 0 12px 36px rgba(46,84,181,.12);
-  transform: translateY(-4px);
+.mission-thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #b0b0b0;
+  border-radius: 999px;
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-bottom: 20px;
 }
 
-.mission-icon {
-  width: 72px;
-  height: 72px;
-  background: var(--background);
-  border-radius: 16px;
+.mission-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mission-body {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  color: var(--point);
+  flex-direction: column;
+  gap: 10px;
 }
 
 .mission-card h3 {
   font-size: 18px;
   font-weight: 700;
   color: var(--fontmain);
+  text-align: center;
 }
 
 .mission-card p {
   font-size: 14px;
   color: var(--fontsub);
   line-height: 1.8;
+  text-align: center;
 }
 
 /* History Section

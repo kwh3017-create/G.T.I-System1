@@ -483,7 +483,10 @@
 }
 
 .contact-info{
- text-align: left;
+  text-align: left;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
 }
 
 .footer-left{
