@@ -109,13 +109,13 @@
 
         <div class="about-imgs">
           <div class="about-img-bg">
-            <!-- 사진 1: <img src="assets/img/about1.jpg" alt="회사 내부"> -->
+            <img src="assets/img/company1.png" alt="회사">
             <div class="about-img-placeholder">
               <i class="fa-regular fa-image"></i>
             </div>
           </div>
           <div class="about-img-main">
-            <!-- 사진 2: <img src="assets/img/about2.jpg" alt="PC 조립"> -->
+            <img src="assets/img/company2.png" alt="pc조립">
             <div class="about-img-placeholder">
               <i class="fa-regular fa-image"></i>
             </div>
@@ -147,7 +147,7 @@
         <div class="mission-cards">
           <div class="mission-card">
             <div class="mission-thumb">
-              <!-- <img src="assets/img/mission1.jpg" alt="용도에 맞는 PC 구성"> -->
+              <img src="assets/img/company3.png" alt="용도에 맞는 PC 구성">
             </div>
             <div class="mission-body">
               <h3>용도에 맞는 PC 구성</h3>
@@ -156,7 +156,7 @@
           </div>
           <div class="mission-card">
             <div class="mission-thumb">
-              <!-- <img src="assets/img/mission2.jpg" alt="쉽게 이해하는 컴퓨터 정보"> -->
+              <img src="assets/img/company4.png" alt="쉽게 이해하는 컴퓨터 정보">
             </div>
             <div class="mission-body">
               <h3>쉽게 이해하는 컴퓨터 정보</h3>
@@ -165,7 +165,7 @@
           </div>
           <div class="mission-card">
             <div class="mission-thumb">
-              <!-- <img src="assets/img/mission3.jpg" alt="신뢰할 수 있는 PC 판매"> -->
+              <img src="assets/img/company5.png" alt="신뢰할 수 있는 PC 판매">
             </div>
             <div class="mission-body">
               <h3>신뢰할 수 있는 PC 판매</h3>
@@ -241,11 +241,7 @@
       <div class="container about-location-inner">
 
         <div class="location-map">
-          <!-- 지도 이미지가 있다면 교체: <img src="assets/img/map-korea.png" alt="위치 지도"> -->
-          <div class="location-map-placeholder">
-            <i class="fa-solid fa-map-location-dot"></i>
-            <span>지도 이미지</span>
-          </div>
+          <div id="map" style="width:100%;height:340px;"></div>
         </div>
 
         <div class="location-info">
@@ -309,120 +305,50 @@
   <i class="fa-solid fa-angle-up"></i>
 </button>
 
-<script src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2215461503aeb8c86b4e7ca39417f494"></script>
 <script>
-(function () {
-  'use strict';
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+    mapOption = { 
+        center: new kakao.maps.LatLng(37.5296795, 126.7231591), // 지도의 중심좌표
+        level: 12 // 지도의 확대 레벨
+    };
 
-  /* ── 헤더 서브메뉴 ── */
-  document.querySelectorAll('.menu-item.has-sub').forEach(function (item) {
-    item.addEventListener('mouseenter', function () {
-      this.querySelector('.sub-menu').style.display = 'block';
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+ 
+// 마커를 표시할 위치와 title 객체 배열입니다 
+var positions = [
+    {
+        title: 'G.T.I 시스템 본사', 
+        latlng: new kakao.maps.LatLng(37.5296795, 126.7231591)
+    },
+    {
+        title: 'G.T.I 시스템 지점', 
+        latlng: new kakao.maps.LatLng(37.5205, 127.1180)
+    },
+];
+
+// 마커 이미지의 이미지 주소입니다
+var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+    
+for (var i = 0; i < positions.length; i ++) {
+    
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new kakao.maps.Size(24, 35); 
+    
+    // 마커 이미지를 생성합니다    
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+    
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions[i].latlng, // 마커를 표시할 위치
+        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image : markerImage // 마커 이미지 
     });
-    item.addEventListener('mouseleave', function () {
-      this.querySelector('.sub-menu').style.display = 'none';
-    });
-  });
-
-  /* ── 언어 드롭다운 ── */
-  var localeBtn = document.querySelector('.locale-btn');
-  var localeList = document.querySelector('.locale-list');
-  if (localeBtn && localeList) {
-    localeBtn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      localeList.style.display = localeList.style.display === 'block' ? 'none' : 'block';
-    });
-    document.addEventListener('click', function () {
-      localeList.style.display = 'none';
-    });
-  }
-
-  /* ── 모바일 드로어 ── */
-  var hamburger = document.querySelector('.hamburger');
-  var mobDrawer = document.querySelector('.mob-drawer');
-  var mobOverlay = document.querySelector('.mob-overlay');
-  var mobClose = document.querySelector('.mob-close');
-
-  function openDrawer() {
-    mobDrawer.classList.add('is-open');
-    mobOverlay.style.display = 'block';
-    document.body.classList.add('mob-lock');
-  }
-  function closeDrawer() {
-    mobDrawer.classList.remove('is-open');
-    mobOverlay.style.display = 'none';
-    document.body.classList.remove('mob-lock');
-  }
-
-  if (hamburger) hamburger.addEventListener('click', openDrawer);
-  if (mobClose) mobClose.addEventListener('click', closeDrawer);
-  if (mobOverlay) mobOverlay.addEventListener('click', closeDrawer);
-
-  document.querySelectorAll('.mob-has-sub').forEach(function (item) {
-    item.querySelector('.mob-link').addEventListener('click', function (e) {
-      e.preventDefault();
-      item.classList.toggle('is-active');
-      var sub = item.querySelector('.mob-sub');
-      sub.style.display = sub.style.display === 'block' ? 'none' : 'block';
-    });
-  });
-
-  /* ── 연혁 슬라이더 ── */
-  var track = document.getElementById('historyTrack');
-  var prevBtn = document.querySelector('.history-prev');
-  var nextBtn = document.querySelector('.history-next');
-  var currentIdx = 0;
-
-  function getVisibleCount() {
-    return window.innerWidth <= 768 ? 1 : 3;
-  }
-
-  var cols = track ? Array.from(track.querySelectorAll('.history-year-col')) : [];
-  var totalCols = cols.length;
-
-  function updateHistory() {
-    var vis = getVisibleCount();
-    var maxIdx = Math.max(0, totalCols - vis);
-    currentIdx = Math.min(currentIdx, maxIdx);
-
-    if (vis >= totalCols) {
-      track.style.transform = 'translateX(0)';
-      return;
-    }
-
-    var colWidth = cols[0].getBoundingClientRect().width;
-    track.style.transform = 'translateX(-' + (colWidth * currentIdx) + 'px)';
-  }
-
-  if (prevBtn) {
-    prevBtn.addEventListener('click', function () {
-      if (currentIdx > 0) { currentIdx--; updateHistory(); }
-    });
-  }
-  if (nextBtn) {
-    nextBtn.addEventListener('click', function () {
-      var vis = getVisibleCount();
-      if (currentIdx < totalCols - vis) { currentIdx++; updateHistory(); }
-    });
-  }
-
-  window.addEventListener('resize', updateHistory);
-
-  /* ── 스크롤 탑 버튼 ── */
-  var scrollTopBtn = document.getElementById('scrollTop');
-  window.addEventListener('scroll', function () {
-    if (scrollTopBtn) {
-      scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
-    }
-  });
-  if (scrollTopBtn) {
-    scrollTopBtn.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-})();
+}
 </script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/about.js"></script>
 
 </body>
 </html>
