@@ -2,12 +2,39 @@
    About Page – 회사소개
    ============================================= */
 
+/* =============================================
+   Header Overlay
+   ============================================= */
+.main-page {
+  position: relative;
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+}
+
+.header .menu-item > a,
+.header .locale-btn {
+  color: #fff;
+}
+
+.header .logo-text,
+.header .logo-point {
+  color: #fff;
+}
+
 /* Sub Banner
 ---------------------------------------------- */
 .sub-banner {
   position: relative;
   width: 100%;
-  height: 280px;
+  height: 380px;
   overflow: hidden;
 }
 
@@ -36,6 +63,7 @@
   height: 100%;
   display: flex;
   align-items: center;
+  padding-top: 100px;
 }
 
 .sub-banner-left {
@@ -506,6 +534,18 @@
 }
 
 @media (max-width: 768px) {
+  .msi-logo {
+    display: none;
+  }
+
+  .sub-banner {
+    height: 320px;
+  }
+
+  .sub-banner-inner {
+    padding-top: 80px;
+  }
+
   .sub-banner-right {
     display: none;
   }
