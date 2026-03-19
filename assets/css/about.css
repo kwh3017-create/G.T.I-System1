@@ -379,7 +379,7 @@
 .history-year {
   font-size: 28px;
   font-weight: 800;
-  color: var(--point);
+  color: var(--fontmain);
   margin-bottom: 24px;
 }
 
@@ -418,19 +418,25 @@
 
 .about-location-inner {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 60px;
 }
 
 .location-map {
   flex: 0 0 420px;
-  height: 289px;
-  background: #ddd;
+  height: 340px;
   border-radius: 20px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  isolation: isolate;
+  position: relative;
+  z-index: 0;
+  align-self: flex-start;
+}
+
+#map {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .location-map img {
@@ -458,11 +464,15 @@
 
 .location-info {
   flex: 1 1 auto;
+  position: relative;
+  z-index: 1;
+  width: 100%;
 }
 
 .location-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 35px;
 }
 
 .location-table tr {
@@ -571,56 +581,22 @@
   .location-map { flex: 0 0 360px; }
 }
 
-/* ── 768px (데스크탑과 동일 레이아웃, 크기만 축소) ── */
+/* ── 768px (모바일 레이아웃 전환) ── */
 @media (max-width: 768px) {
   .sub-banner { height: 260px; }
   .sub-banner-inner { padding-top: 70px; }
   .sub-title { font-size: 26px; }
 
-  .about-intro { padding: 56px 0; }
-  .about-intro-inner { gap: 32px; }
-  .about-imgs { flex: 0 0 320px; height: 280px; }
-  .about-img-bg { width: 220px; height: 190px; }
-  .about-img-main { width: 200px; height: 190px; }
-  .about-title { font-size: 22px; }
-  .about-desc { font-size: 14px; }
-
-  .about-mission { padding: 48px 0 56px; }
-  .mission-title { font-size: 22px; }
-  .mission-eyebrow { font-size: 14px; }
-  .mission-thumb { height: 180px; }
-  .mission-card h3 { font-size: 15px; }
-  .mission-card p { font-size: 14px; }
-
-  .about-history { padding: 48px 0; }
-  .history-title { font-size: 20px; }
-  .history-year { font-size: 22px; }
-  .history-list li { font-size: 14px; }
-
-  .about-location { padding: 48px 0; }
-  .location-map { flex: 0 0 320px; height: 220px; }
-  .location-table th { font-size: 14px; padding: 14px 0; }
-  .location-table td { font-size: 14px; padding: 14px 0; }
-}
-
-/* ── 540px (모바일 레이아웃 전환) ── */
-@media (max-width: 540px) {
-  .sub-banner { height: 220px; }
-  .sub-banner-inner { padding-top: 60px; }
-  .sub-title { font-size: 22px; }
-
   /* intro: 세로 스택 */
-  .about-intro { padding: 40px 0; }
+  .about-intro { padding: 48px 0; }
   .about-intro-inner { flex-direction: column; gap: 24px; }
-
-  /* 이미지 2열 나란히 */
   .about-imgs {
     flex: none;
     width: 100%;
     position: static;
-    height: 180px;
+    height: 220px;
     display: flex;
-    gap: 10px;
+    gap: 12px;
   }
   .about-img-bg,
   .about-img-main {
@@ -632,17 +608,46 @@
     border: none;
     box-shadow: none;
   }
-
-  /* about-text: 컬럼 방향 flex-basis 무력화 */
   .about-text { flex: none; width: 100%; }
-  .about-tag { font-size: 14px; }
-  .about-title { font-size: 22px; }
-  .about-desc { font-size: 14px; }
+  .about-title { font-size: 24px; }
+  .about-desc { font-size: 15px; }
 
-  /* mission: 홀수=이미지 좌, 짝수=이미지 우, 교차 배치 */
+  .about-mission { padding: 48px 0 56px; }
+  .mission-title { font-size: 22px; }
+  .mission-eyebrow { font-size: 15px; }
+  .mission-thumb { height: 180px; }
+  .mission-card h3 { font-size: 16px; }
+  .mission-card p { font-size: 15px; }
+
+  /* history: 2열 슬라이더 */
+  .about-history { padding: 48px 0; }
+  .history-title { font-size: 20px; }
+  .history-track { width: calc(100% * 3); }
+  .history-year { font-size: 22px; }
+  .history-list li { font-size: 15px; }
+
+  .about-location { padding: 48px 0; }
+  .location-map { flex: 0 0 320px; height: 260px; }
+  .location-table th { font-size: 15px; padding: 14px 0; }
+  .location-table td { font-size: 15px; padding: 14px 0; }
+}
+
+/* ── 540px (크기 조정) ── */
+@media (max-width: 540px) {
+  .sub-banner { height: 220px; }
+  .sub-banner-inner { padding-top: 60px; }
+  .sub-title { font-size: 22px; }
+
+  /* intro: 레이아웃은 768px에서 상속, 크기만 조정 */
+  .about-intro { padding: 36px 0; }
+  .about-imgs { height: 180px; gap: 10px; }
+  .about-title { font-size: 22px; }
+  .about-desc { font-size: 15px; }
+
+  /* mission: 1열 가로 카드 */
   .about-mission { padding: 36px 0 44px; }
   .mission-title { font-size: 20px; }
-  .mission-eyebrow { font-size: 14px; }
+  .mission-eyebrow { font-size: 15px; }
   .mission-cards { grid-template-columns: 1fr; gap: 24px; }
   .mission-card { flex-direction: row; align-items: flex-start; gap: 16px; }
   .mission-card:nth-child(even) { flex-direction: row-reverse; }
@@ -650,7 +655,7 @@
   .mission-thumb img { width: 100%; height: 100%; object-fit: cover; }
   .mission-body { flex: 1; }
   .mission-card h3 { font-size: 15px; text-align: left; }
-  .mission-card p { font-size: 14px; text-align: left; }
+  .mission-card p { font-size: 15px; text-align: left; }
 
   /* history: 1열 슬라이더 */
   .about-history { padding: 36px 0; }
@@ -665,15 +670,39 @@
   }
   .history-year-col:last-child { border-bottom: none; }
   .history-year { font-size: 20px; }
-  .history-list li { font-size: 14px; }
+  .history-list li { font-size: 15px; }
   .history-nav-btn { width: 40px; height: 40px; font-size: 15px; }
 
   /* location: 세로 스택 */
   .about-location { padding: 36px 0; }
   .about-location-inner { flex-direction: column; gap: 24px; }
-  .location-map { flex: none; width: 100%; height: 210px; }
-  .location-table th { font-size: 14px; width: 100px; }
-  .location-table td { font-size: 14px; }
+  .location-map { flex: none; width: 100%; height: 240px; }
+
+  /* 테이블 행을 블록으로 전환 → th(라벨) 위 / td(값) 아래 */
+  .location-table,
+  .location-table tbody,
+  .location-table tr,
+  .location-table th,
+  .location-table td { display: block; width: 100%; }
+
+  .location-table { margin-top: 0; }
+
+  .location-table tr {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+  }
+  .location-table tr:last-child { border-bottom: none; }
+
+  .location-table th {
+    padding: 0 0 2px;
+    font-size: 13px;
+    font-weight: 400;
+    width: 100%;
+  }
+  .location-table td {
+    padding: 0;
+    font-size: 14px;
+  }
 }
 
 /* ── 414px (최소 모바일) ── */
@@ -682,7 +711,7 @@
   .sub-banner-inner { padding-top: 54px; }
   .sub-title { font-size: 20px; }
 
-  .about-intro { padding: 32px 0; }
+  .about-intro { padding: 28px 0; }
   .about-imgs { height: 150px; gap: 8px; }
   .about-img-bg,
   .about-img-main { height: 100%; }
@@ -696,15 +725,14 @@
   .mission-thumb img { width: 100%; height: 100%; object-fit: cover; }
   .mission-body { flex: 1; }
   .mission-card h3 { font-size: 15px; text-align: left; }
-  .mission-card p { font-size: 14px; text-align: left; }
+  .mission-card p { font-size: 15px; text-align: left; }
 
   .about-history { padding: 28px 0; }
   .history-title { font-size: 17px; }
   .history-year { font-size: 18px; }
-  .history-list li { font-size: 14px; }
+  .history-list li { font-size: 15px; }
 
   .about-location { padding: 28px 0; }
-  .location-map { height: 185px; }
-  .location-table th,
-  .location-table td { font-size: 14px; padding: 12px 0; }
+  .location-map { height: 210px; }
+  .location-table tr { padding: 8px 0; }
 }

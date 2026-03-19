@@ -1,0 +1,696 @@
+/* =============================================
+   Info Page – 컴퓨터 정보
+   ============================================= */
+
+/* =============================================
+   Header Overlay
+   ============================================= */
+.info-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+}
+
+.info-header .menu-item > a,
+.info-header .locale-btn {
+  color: #fff;
+}
+
+.info-header .logo-text,
+.info-header .logo-point {
+  color: #fff;
+}
+
+/* =============================================
+   Hero Banner
+   ============================================= */
+.info-hero {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-hero-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.info-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.info-hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10, 5, 40, 0.80) 0%, rgba(30, 10, 80, 0.70) 50%, rgba(5, 20, 60, 0.80) 100%);
+}
+
+.info-hero-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding-top: 80px;
+}
+
+.info-hero-sub {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
+}
+
+.info-hero-title {
+  font-size: 46px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* =============================================
+   Tab Navigation
+   ============================================= */
+.info-tab-nav-wrap {
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+}
+
+.info-tab-nav {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 18px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #666;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  letter-spacing: 0.02em;
+}
+
+.tab-btn:hover {
+  color: var(--point);
+}
+
+.tab-btn.active {
+  color: var(--point);
+  border-bottom-color: var(--point);
+  background: rgba(46, 84, 181, 0.05);
+}
+
+/* =============================================
+   Tab Content
+   ============================================= */
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+/* =============================================
+   Info Section (공통)
+   ============================================= */
+.info-section {
+  padding: 90px 0;
+  background: #fff;
+}
+
+.info-section-alt {
+  background: #f8f9fc;
+}
+
+.info-section-inner {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.info-text-side {
+  flex: 1 1 0;
+}
+
+.info-img-side {
+  flex: 0 0 380px;
+}
+
+.info-section-alt .info-text-side {
+  order: 2;
+}
+
+.info-section-alt .info-img-side {
+  order: 1;
+}
+
+.info-section-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--fontmain);
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+.info-section-desc {
+  font-size: 16px;
+  color: var(--fontsub);
+  line-height: 2;
+}
+
+.info-brand-summary {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 24px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.info-brand-summary p {
+  font-size: 15px;
+  color: var(--fontmain);
+  line-height: 1.6;
+}
+
+.info-brand-summary strong {
+  color: var(--point);
+}
+
+/* =============================================
+   Image Boxes
+   ============================================= */
+.info-img-box {
+  width: 100%;
+  height: 280px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* CPU 이미지 박스 */
+.info-img-box:not(.info-img-brands) {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  box-shadow: 0 12px 40px rgba(15, 52, 96, 0.35);
+}
+
+.info-img-label {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+}
+
+.info-img-label span {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.08em;
+  margin-top: 8px;
+  line-height: 1.7;
+}
+
+/* RAM 색상 */
+.info-img-ram {
+  background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 50%, #0a3d62 100%) !important;
+}
+
+/* GPU 색상 */
+.info-img-gpu {
+  background: linear-gradient(135deg, #1a0533 0%, #2d1b69 50%, #11998e 100%) !important;
+}
+
+/* 저장장치 색상 */
+.info-img-storage {
+  background: linear-gradient(135deg, #1c1c1c 0%, #2c2c54 50%, #40407a 100%) !important;
+}
+
+/* =============================================
+   Brand Compare Boxes
+   ============================================= */
+.info-img-brands {
+  background: #f0f2f8 !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-circle-intel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0071c5, #00a3e0);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  box-shadow: 0 8px 24px rgba(0, 113, 197, 0.4);
+}
+
+.brand-circle-amd {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 130px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ed1c24, #c0392b);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  box-shadow: 0 8px 24px rgba(237, 28, 36, 0.4);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.brand-circle-amd small {
+  font-size: 10px;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.brand-circle-amd sup {
+  font-size: 11px;
+}
+
+/* RAM compare */
+.ram-compare,
+.gpu-compare,
+.storage-compare {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ram-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 110px;
+  border-radius: 14px;
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.04em;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.ram-badge.ddr4 {
+  background: linear-gradient(135deg, #2c3e50, #3498db);
+}
+
+.ram-badge.ddr5 {
+  background: linear-gradient(135deg, #1a1a2e, #e44d26);
+}
+
+.ram-vs {
+  font-size: 18px;
+  font-weight: 800;
+  color: #aaa;
+}
+
+.gpu-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 110px;
+  border-radius: 14px;
+  font-size: 18px;
+  font-weight: 900;
+  color: #fff;
+  text-align: center;
+  line-height: 1.4;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.gpu-badge small {
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.gpu-badge.nvidia {
+  background: linear-gradient(135deg, #1a1a2e, #76b900);
+}
+
+.gpu-badge.radeon {
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+}
+
+.storage-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 110px;
+  border-radius: 14px;
+  font-size: 20px;
+  font-weight: 900;
+  color: #fff;
+  text-align: center;
+  line-height: 1.4;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.storage-badge small {
+  font-size: 10px;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.storage-badge.ssd {
+  background: linear-gradient(135deg, #0f3460, #533483);
+}
+
+.storage-badge.hdd {
+  background: linear-gradient(135deg, #2c3e50, #4a4a4a);
+}
+
+/* =============================================
+   FAQ Section
+   ============================================= */
+.info-faq {
+  padding: 80px 0 100px;
+  background: #fff;
+}
+
+.info-faq-title {
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--fontmain);
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.faq-list {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--fontmain);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s;
+}
+
+.faq-q:hover {
+  color: var(--point);
+}
+
+.faq-q[aria-expanded="true"] {
+  color: var(--point);
+}
+
+.faq-icon {
+  font-size: 13px;
+  color: #999;
+  flex-shrink: 0;
+  transition: transform 0.25s;
+}
+
+.faq-q[aria-expanded="true"] .faq-icon {
+  transform: rotate(90deg);
+  color: var(--point);
+}
+
+.faq-a {
+  display: none;
+  padding: 0 0 22px;
+}
+
+.faq-a p {
+  font-size: 15px;
+  color: var(--fontsub);
+  line-height: 1.9;
+}
+
+/* =============================================
+   CTA Section
+   ============================================= */
+.info-cta {
+  background: linear-gradient(135deg, #0d4f5c 0%, #0a3d4a 40%, #116466 100%);
+  padding: 80px 0;
+}
+
+.info-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.info-cta-eyebrow {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.info-cta-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.5;
+}
+
+.info-cta-btns {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.cta-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 28px;
+  background: #fff;
+  color: #0d4f5c;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.cta-btn-primary:hover {
+  background: #e8f4f6;
+}
+
+.cta-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 28px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  text-decoration: none;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.cta-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* =============================================
+   Scroll-to-top
+   ============================================= */
+.scroll-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 44px;
+  height: 44px;
+  background: var(--point);
+  color: #fff;
+  border: 0;
+  border-radius: 50%;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s;
+}
+
+.scroll-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* =============================================
+   Responsive
+   ============================================= */
+
+/* ── 1280px ── */
+@media (max-width: 1280px) {
+  .info-hero { height: 360px; }
+  .info-hero-title { font-size: 40px; }
+
+  .info-section { padding: 72px 0; }
+  .info-section-inner { gap: 60px; }
+  .info-img-side { flex: 0 0 320px; }
+  .info-section-title { font-size: 28px; }
+
+  .info-cta { padding: 64px 0; }
+  .info-cta-title { font-size: 24px; }
+}
+
+/* ── 1024px ── */
+@media (max-width: 1024px) {
+  .info-hero { height: 320px; }
+  .info-hero-title { font-size: 36px; }
+
+  .info-section { padding: 60px 0; }
+  .info-section-inner { gap: 40px; }
+  .info-img-side { flex: 0 0 280px; }
+  .info-section-title { font-size: 26px; }
+  .info-img-box { height: 240px; }
+
+  .info-tab-nav { padding: 0 24px; }
+  .tab-btn { font-size: 15px; padding: 16px 0; }
+
+  .info-cta-inner { flex-direction: column; align-items: flex-start; gap: 28px; }
+  .info-cta-title { font-size: 22px; }
+}
+
+/* ── 768px ── */
+@media (max-width: 768px) {
+  .info-hero { height: 280px; }
+  .info-hero-sub { font-size: 13px; }
+  .info-hero-title { font-size: 30px; }
+
+  .info-tab-nav { padding: 0 16px; }
+  .tab-btn { font-size: 14px; padding: 14px 0; }
+
+  .info-section { padding: 48px 0; }
+  .info-section-inner { flex-direction: column; gap: 32px; }
+  .info-img-side { flex: none; width: 100%; order: 1 !important; }
+  .info-text-side { order: 2 !important; }
+  .info-img-box { height: 220px; }
+  .info-section-title { font-size: 24px; }
+  .info-section-desc { font-size: 15px; }
+
+  .info-faq { padding: 56px 0 72px; }
+  .info-faq-title { font-size: 28px; }
+  .faq-q { font-size: 15px; }
+  .faq-a p { font-size: 14px; }
+
+  .info-cta { padding: 52px 0; }
+  .info-cta-title { font-size: 20px; }
+  .info-cta-btns { flex-direction: column; width: 100%; }
+  .cta-btn-primary,
+  .cta-btn-secondary { justify-content: center; }
+}
+
+/* ── 540px ── */
+@media (max-width: 540px) {
+  .info-hero { height: 240px; }
+  .info-hero-title { font-size: 26px; }
+
+  .info-section { padding: 36px 0; }
+  .info-section-title { font-size: 22px; }
+  .info-img-box { height: 180px; }
+  .info-img-label { font-size: 22px; }
+
+  .info-faq { padding: 40px 0 56px; }
+  .info-faq-title { font-size: 24px; }
+
+  .info-cta { padding: 40px 0; }
+  .info-cta-title { font-size: 18px; }
+
+  .ram-compare, .gpu-compare, .storage-compare { gap: 16px; }
+  .ram-badge { width: 90px; height: 90px; font-size: 18px; }
+  .gpu-badge, .storage-badge { width: 100px; height: 90px; font-size: 16px; }
+  .brand-circle-intel,
+  .brand-circle-amd { width: 110px; height: 110px; }
+}
+
+/* ── 414px ── */
+@media (max-width: 414px) {
+  .info-hero { height: 210px; }
+  .info-hero-title { font-size: 22px; }
+  .info-hero-inner { padding-top: 60px; }
+
+  .tab-btn { font-size: 13px; padding: 12px 0; }
+
+  .info-section { padding: 28px 0; }
+  .info-section-title { font-size: 20px; }
+
+  .info-faq-title { font-size: 22px; }
+  .faq-q { font-size: 14px; padding: 18px 0; }
+}

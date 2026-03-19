@@ -46,7 +46,9 @@ $(function () {
   var totalCols = $cols.length;
 
   function getVisibleCount() {
-    return $(window).width() <= 768 ? 1 : 3;
+    if ($(window).width() <= 540) return 1;
+    if ($(window).width() <= 768) return 2;
+    return 3;
   }
 
   function updateHistory() {
