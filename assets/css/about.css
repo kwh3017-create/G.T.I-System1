@@ -34,7 +34,8 @@
 .sub-banner {
   position: relative;
   width: 100%;
-  height: 380px;
+  height: 100vh;
+  min-height: 400px;
   overflow: hidden;
 }
 
@@ -203,15 +204,16 @@
   flex: 0 1 480px;
 }
 
-.about-tag {
-  display: inline-block;
-  background: rgba(46,84,181,.10);
-  color: var(--point);
-  font-size: 14px;
-  font-weight: 700;
-  padding: 4px 14px;
-  border-radius: 999px;
-  margin-bottom: 20px;
+.about-text img {
+  width: 300px;
+  height: 100px;
+}
+
+.about-tag img {
+
+  width: 200px;
+  height: 120px;
+  vertical-align: middle;
 }
 
 .about-title {
@@ -539,7 +541,7 @@
 
 /* ── 1280px ── */
 @media (max-width: 1280px) {
-  .sub-banner { height: 340px; }
+  .sub-banner { height: 100vh; }
 
   .about-intro { padding: 80px 0; }
   .about-intro-inner { gap: 60px; }
@@ -560,7 +562,7 @@
 
 /* ── 1024px ── */
 @media (max-width: 1024px) {
-  .sub-banner { height: 300px; }
+  .sub-banner { height: 100vh; }
 
   .about-intro { padding: 64px 0; }
   .about-intro-inner { gap: 40px; }
@@ -583,7 +585,7 @@
 
 /* ── 768px (모바일 레이아웃 전환) ── */
 @media (max-width: 768px) {
-  .sub-banner { height: 260px; }
+  .sub-banner { height: 100vh; }
   .sub-banner-inner { padding-top: 70px; }
   .sub-title { font-size: 26px; }
 
@@ -634,7 +636,7 @@
 
 /* ── 540px (크기 조정) ── */
 @media (max-width: 540px) {
-  .sub-banner { height: 220px; }
+  .sub-banner { height: 100vh; }
   .sub-banner-inner { padding-top: 60px; }
   .sub-title { font-size: 22px; }
 
@@ -707,7 +709,7 @@
 
 /* ── 414px (최소 모바일) ── */
 @media (max-width: 414px) {
-  .sub-banner { height: 190px; }
+  .sub-banner { height: 100vh; }
   .sub-banner-inner { padding-top: 54px; }
   .sub-title { font-size: 20px; }
 
