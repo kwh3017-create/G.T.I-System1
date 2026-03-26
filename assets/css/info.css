@@ -160,7 +160,7 @@
 }
 
 .info-img-side {
-  flex: 0 0 380px;
+  flex: 0 0 480px;
 }
 
 .info-section-alt .info-text-side {
@@ -221,8 +221,9 @@
 }
 
 .info-img-side img{
-  width: 380px;
-  height: 290px;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* CPU 이미지 박스 */
@@ -503,23 +504,72 @@
    CTA Section
    ============================================= */
 .info-cta {
-  background: url('../img/info-banner.png') center / cover no-repeat;
-  padding: 80px 0;
+  position: relative;
+  background-image: url("/assets/img/info-banner.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 60px 0;
+  overflow: hidden;
+}
+
+/* 장식 블롭 */
+.info-cta-deco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.deco-blob {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.18;
+}
+
+.deco-blob-1 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, #2a9db5 0%, transparent 70%);
+  right: -60px;
+  top: -100px;
+}
+
+.deco-blob-2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #1b6fa8 0%, transparent 70%);
+  right: 200px;
+  bottom: -80px;
+  opacity: 0.22;
+}
+
+.deco-blob-3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #4ab8d0 0%, transparent 70%);
+  right: 80px;
+  top: 20px;
+  opacity: 0.14;
 }
 
 .info-cta-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.info-cta-content {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  max-width: 660px;
 }
 
 .info-cta-eyebrow {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.65);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
 }
 
 .info-cta-title {
@@ -527,49 +577,51 @@
   font-weight: 800;
   color: #fff;
   line-height: 1.5;
+  margin-bottom: 28px;
 }
 
 .info-cta-btns {
   display: flex;
   gap: 12px;
-  flex-shrink: 0;
+  flex-wrap: wrap;
 }
 
 .cta-btn-primary {
   display: inline-flex;
   align-items: center;
-  padding: 14px 28px;
-  background: #fff;
-  color: #0d4f5c;
+  padding: 13px 26px;
+  background: #1a6fdb;
+  color: #fff;
   font-size: 15px;
   font-weight: 700;
   border-radius: 8px;
-  text-decoration: none;
-  transition: background 0.2s, color 0.2s;
-  white-space: nowrap;
-}
-
-.cta-btn-primary:hover {
-  background: #e8f4f6;
-}
-
-.cta-btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  padding: 14px 28px;
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
   text-decoration: none;
   transition: background 0.2s;
   white-space: nowrap;
 }
 
+.cta-btn-primary:hover {
+  background: #155bbf;
+}
+
+.cta-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 26px;
+  background: transparent;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
 .cta-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
 }
 
 /* =============================================
@@ -612,7 +664,7 @@
 
   .info-section { padding: 72px 0; }
   .info-section-inner { gap: 60px; }
-  .info-img-side { flex: 0 0 320px; }
+  .info-img-side { flex: 0 0 400px; }
   .info-section-title { font-size: 28px; }
 
   .info-cta { padding: 64px 0; }
@@ -626,14 +678,13 @@
 
   .info-section { padding: 60px 0; }
   .info-section-inner { gap: 40px; }
-  .info-img-side { flex: 0 0 280px; }
+  .info-img-side { flex: 0 0 340px; }
   .info-section-title { font-size: 26px; }
   .info-img-box { height: 240px; }
 
   .info-tab-nav { padding: 0 24px; }
   .tab-btn { font-size: 15px; padding: 16px 0; }
 
-  .info-cta-inner { flex-direction: column; align-items: flex-start; gap: 28px; }
   .info-cta-title { font-size: 22px; }
 }
 
@@ -647,11 +698,10 @@
   .tab-btn { font-size: 14px; padding: 14px 0; }
 
   .info-section { padding: 48px 0; }
-  .info-section-inner { flex-direction: column; gap: 32px; }
-  .info-img-side { flex: none; width: 100%; order: 1 !important; }
-  .info-text-side { order: 2 !important; }
-  .info-img-box { height: 220px; }
-  .info-section-title { font-size: 24px; }
+  .info-section-inner { gap: 24px; }
+  .info-img-side { flex: 0 0 240px; }
+  .info-img-box { height: 200px; }
+  .info-section-title { font-size: 22px; }
   .info-section-desc { font-size: 15px; }
 
   .info-faq { padding: 56px 0 72px; }
@@ -672,7 +722,11 @@
   .info-hero-title { font-size: 26px; }
 
   .info-section { padding: 36px 0; }
-  .info-section-title { font-size: 22px; }
+  .info-section-inner { flex-direction: column; gap: 32px; }
+  .info-img-side { flex: none; width: 100%; max-width: 400px; margin: 0 auto; order: 2 !important; }
+  .info-text-side { order: 1 !important; }
+  .info-section-title { font-size: 30px; }
+  .info-section-desc { font-size: 15px; }
   .info-img-box { height: 180px; }
   .info-img-label { font-size: 22px; }
 
@@ -680,13 +734,18 @@
   .info-faq-title { font-size: 24px; }
 
   .info-cta { padding: 40px 0; }
+  .info-cta-content { align-items: center; text-align: center; }
   .info-cta-title { font-size: 18px; }
+  .info-cta-btns { flex-direction: row; width: auto; }
+  .cta-btn-primary,
+  .cta-btn-secondary { font-size: 14px; padding: 11px 18px; }
 
   .ram-compare, .gpu-compare, .storage-compare { gap: 16px; }
   .ram-badge { width: 90px; height: 90px; font-size: 18px; }
   .gpu-badge, .storage-badge { width: 100px; height: 90px; font-size: 16px; }
   .brand-circle-intel,
   .brand-circle-amd { width: 110px; height: 110px; }
+  .info-brand-summary p{ font-size: 15px; }
 }
 
 /* ── 414px ── */
@@ -696,6 +755,8 @@
   .info-hero-inner { padding-top: 60px; }
 
   .tab-btn { font-size: 13px; padding: 12px 0; }
+
+  .info-img-side { flex: none; width: 100%; max-width: 340px; margin: 0 auto; order: 2 !important; }
 
   .info-section { padding: 28px 0; }
   .info-section-title { font-size: 20px; }
