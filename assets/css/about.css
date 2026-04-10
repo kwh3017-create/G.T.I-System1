@@ -18,17 +18,38 @@
   z-index: 10;
   background: transparent;
   border-bottom: 1px solid rgba(255, 255, 255, .12);
+  transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
 
 .header .menu-item > a,
 .header .locale-btn,
 .header .hamburger {
   color: #fff;
+  transition: color 0.3s;
 }
 
 .header .logo-text,
 .header .logo-point {
   color: #fff;
+  transition: color 0.3s;
+}
+
+.header.scrolled {
+  position: fixed;
+  background: #fff;
+  border-bottom-color: rgba(0, 0, 0, .08);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, .10);
+}
+
+.header.scrolled .menu-item > a,
+.header.scrolled .locale-btn,
+.header.scrolled .hamburger {
+  color: var(--fontmain);
+}
+
+.header.scrolled .logo-text,
+.header.scrolled .logo-point {
+  color: var(--point);
 }
 
 /* Sub Banner
