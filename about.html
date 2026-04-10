@@ -9,7 +9,9 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/font.css">
   <link rel="stylesheet" href="assets/css/about.css">
-  <script src="https://kit.fontawesome.com/7cffe83019.js" crossorigin="anonymous"></script>
+<!-- mirror: true가 정상 지원되는 버전 -->
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+<script src="https://kit.fontawesome.com/7cffe83019.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -27,8 +29,8 @@
       </div>
       <ul class="mob-menu">
         <li><a href="about.html" class="mob-link">회사소개</a></li>
-        <li><a href="#" class="mob-link">구매 서비스</a></li>
-        <li><a href="#" class="mob-link">견적 상담</a></li>
+        <li><a href="index.html#service" class="mob-link">구매 서비스</a></li>
+        <li><a href="index.html#contact" class="mob-link">견적 상담</a></li>
         <li class="mob-has-sub">
           <a href="info.html" class="mob-link">컴퓨터 정보 <i class="fa-solid fa-chevron-down mob-arrow"></i></a>
           <ul class="mob-sub">
@@ -38,7 +40,7 @@
             <li><a href="info.html?tab=storage">저장장치</a></li>
           </ul>
         </li>
-        <li><a href="#" class="mob-link">오시는길</a></li>
+        <li><a href="index.html#contact" class="mob-link">오시는길</a></li>
       </ul>
     </nav>
 
@@ -55,8 +57,8 @@
         <nav class="gnb">
           <ul class="menu">
             <li class="menu-item"><a href="about.html">회사소개</a></li>
-            <li class="menu-item"><a href="#">구매 서비스</a></li>
-            <li class="menu-item"><a href="#">견적상담</a></li>
+            <li class="menu-item"><a href="index.html#service">구매 서비스</a></li>
+            <li class="menu-item"><a href="index.html#contact">견적상담</a></li>
             <li class="menu-item has-sub">
               <a href="info.html">컴퓨터 정보</a>
               <ul class="sub-menu">
@@ -66,7 +68,7 @@
                 <li><a href="info.html?tab=storage">저장장치</a></li>
               </ul>
             </li>
-            <li class="menu-item"><a href="#">오시는길</a></li>
+            <li class="menu-item"><a href="index.html#contact">오시는길</a></li>
           </ul>
         </nav>
 
@@ -93,7 +95,7 @@
           <img src="assets/img/slide1.png" alt="slide">
         </div>
         <div class="container sub-banner-inner">
-          <div class="sub-banner-left">
+          <div class="sub-banner-left" data-aos="fade-up" data-aos-duration="800">
             <p class="sub-breadcrumb">
               <a href="index.html">홈</a>
               <span>&gt;</span>
@@ -109,7 +111,7 @@
       <section class="about-intro">
         <div class="container about-intro-inner">
 
-          <div class="about-imgs">
+          <div class="about-imgs" data-aos="fade-right" data-aos-duration="900">
             <div class="about-img-bg">
               <img src="assets/img/company1.png" alt="회사">
               <div class="about-img-placeholder">
@@ -124,7 +126,7 @@
             </div>
           </div>
 
-          <div class="about-text">
+          <div class="about-text" data-aos="fade-left" data-aos-duration="900" data-aos-delay="100">
             <img src="assets/img/logo.jpg" alt="">
             <h2 class="about-title">기억에 남는<br>기업이 되고 싶습니다.</h2>
             <p class="about-desc">
@@ -143,11 +145,11 @@
       <!-- ③ 미션 / 선택 기준 -->
       <section class="about-mission">
         <div class="container">
-          <p class="mission-eyebrow">우리는 컴퓨터를 판매하는 것을 넘어</p>
-          <h2 class="mission-title">사용 목적에 맞는 선택 기준을 제공합니다.</h2>
+          <p class="mission-eyebrow" data-aos="fade-up" data-aos-duration="700">우리는 컴퓨터를 판매하는 것을 넘어</p>
+          <h2 class="mission-title" data-aos="fade-up" data-aos-duration="700" data-aos-delay="100">사용 목적에 맞는 선택 기준을 제공합니다.</h2>
 
           <div class="mission-cards">
-            <div class="mission-card">
+            <div class="mission-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="0">
               <div class="mission-thumb">
                 <img src="assets/img/company3.png" alt="용도에 맞는 PC 구성">
               </div>
@@ -156,7 +158,7 @@
                 <p>게이밍, 작업용, 사무용 등<br>사용환경에 따라 필요한 사양은 달라집니다.<br><br>불필요한 성능은 줄이고,<br>꼭 필요한 구성만으로<br>합리적인 PC를 추천합니다.</p>
               </div>
             </div>
-            <div class="mission-card">
+            <div class="mission-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="150">
               <div class="mission-thumb">
                 <img src="assets/img/company4.png" alt="쉽게 이해하는 컴퓨터 정보">
               </div>
@@ -166,7 +168,7 @@
                   있는 정보를 제공합니다.</p>
               </div>
             </div>
-            <div class="mission-card">
+            <div class="mission-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="300">
               <div class="mission-thumb">
                 <img src="assets/img/company5.png" alt="신뢰할 수 있는 PC 판매">
               </div>
@@ -182,7 +184,7 @@
       <!-- ④ 연혁 -->
       <section class="about-history">
         <div class="container about-history-inner">
-          <h2 class="history-title">
+          <h2 class="history-title" data-aos="fade-up" data-aos-duration="800">
             컴퓨터에 진심인 사람들이 모여<br>
             지금 이순간까지<br>
             함께 해왔습니다.
@@ -201,7 +203,7 @@
           <div class="history-track-wrap">
             <div class="history-track" id="historyTrack">
 
-              <div class="history-year-col">
+              <div class="history-year-col" data-aos="fade-up" data-aos-duration="600" data-aos-delay="0">
                 <h3 class="history-year">2025</h3>
                 <ul class="history-list">
                   <li>고객 사용 데이터 기반 PC 추천 시스템 고도화</li>
@@ -212,7 +214,7 @@
                 </ul>
               </div>
 
-              <div class="history-year-col">
+              <div class="history-year-col" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
                 <h3 class="history-year">2024</h3>
                 <ul class="history-list">
                   <li>게이밍·사무·작업용 PC 라인업 세분화</li>
@@ -223,7 +225,7 @@
                 </ul>
               </div>
 
-              <div class="history-year-col">
+              <div class="history-year-col" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
                 <h3 class="history-year">2023</h3>
                 <ul class="history-list">
                   <li>컴퓨터 판매·정보 플랫폼 서비스 시작</li>
@@ -234,7 +236,7 @@
                 </ul>
               </div>
 
-              <div class="history-year-col">
+              <div class="history-year-col" data-aos="fade-up" data-aos-duration="600" data-aos-delay="0">
                 <h3 class="history-year">2022</h3>
                 <ul class="history-list">
                   <li>PC 견적 비교 서비스 베타 출시</li>
@@ -245,7 +247,7 @@
                 </ul>
               </div>
 
-              <div class="history-year-col">
+              <div class="history-year-col" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
                 <h3 class="history-year">2021</h3>
                 <ul class="history-list">
                   <li>GPU 수급 대란 속 실시간 재고 안내 서비스 운영</li>
@@ -256,7 +258,7 @@
                 </ul>
               </div>
 
-              <div class="history-year-col">
+              <div class="history-year-col" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
                 <h3 class="history-year">2020</h3>
                 <ul class="history-list">
                   <li>G.T.I System 서비스 창업 (4월)</li>
@@ -276,11 +278,11 @@
       <section class="about-location">
         <div class="container about-location-inner">
 
-          <div class="location-map">
+          <div class="location-map" data-aos="fade-right" data-aos-duration="900">
             <div id="map" style="width:100%;height:100%;"></div>
           </div>
 
-          <div class="location-info">
+          <div class="location-info" data-aos="fade-left" data-aos-duration="900" data-aos-delay="150">
             <table class="location-table">
               <tbody>
                 <tr>
@@ -392,6 +394,16 @@
   </script>
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/about.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    once: false,
+    mirror: true,
+    offset: 60,
+    duration: 700,
+    easing: 'ease-in-out'
+  });
+</script>
 
 </body>
 

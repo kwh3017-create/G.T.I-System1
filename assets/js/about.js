@@ -108,9 +108,11 @@ $(function () {
 
   $(window).on('resize', updateHistory);
 
-  /* ── 스크롤 탑 버튼 ── */
+  /* ── 스크롤 탑 버튼 + 헤더 스크롤 감지 ── */
   $(window).on('scroll', function () {
-    $('#scrollTop').toggleClass('visible', $(this).scrollTop() > 300);
+    var st = $(this).scrollTop();
+    $('.header').toggleClass('scrolled', st > 50);
+    $('#scrollTop').toggleClass('visible', st > 300);
   });
   $('#scrollTop').on('click', function () {
     $('html, body').animate({ scrollTop: 0 }, 300);

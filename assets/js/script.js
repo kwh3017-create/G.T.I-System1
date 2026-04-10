@@ -539,10 +539,23 @@ $(function () {
     alert("문의 기능은 현재 준비 중입니다.");
   });
 
-  /* Scroll-to-top */
+  /* ── 앵커 부드러운 스크롤 ── */
+  $(document).on("click", 'a[href^="#"]', function (e) {
+    var target = $(this).attr("href");
+    if (target === "#") return;
+    var $target = $(target);
+    if (!$target.length) return;
+    e.preventDefault();
+    var headerH = $(".header").outerHeight() || 0;
+    $("html, body").animate({ scrollTop: $target.offset().top - headerH }, 500, "swing");
+  });
+
+  /* Scroll-to-top + 헤더 스크롤 감지 */
   var $scrollTop = $("#scrollTop");
   $(window).on("scroll", function () {
-    $scrollTop.toggleClass("visible", $(this).scrollTop() > 300);
+    var st = $(this).scrollTop();
+    $(".header").toggleClass("scrolled", st > 50);
+    $scrollTop.toggleClass("visible", st > 300);
   });
   $scrollTop.on("click", function () {
     $("html, body").animate({ scrollTop: 0 }, 400);

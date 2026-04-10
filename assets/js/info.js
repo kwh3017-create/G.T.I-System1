@@ -73,15 +73,35 @@ $(function () {
   });
 
   /* ── 탭 전환 ── */
+  var currentTab = 'cpu';
+  var tabAnimating = false;
+
   function switchTab(tabId) {
+    if (tabId === currentTab || tabAnimating) return;
+
+    var tabs = $('.tab-btn').map(function () { return $(this).data('tab'); }).get();
+    var currentIndex = tabs.indexOf(currentTab);
+    var nextIndex    = tabs.indexOf(tabId);
+    var exitClass    = nextIndex > currentIndex ? 'tab-exit-left' : 'tab-exit-right';
+
+    tabAnimating = true;
+    var $currentPane = $('#tab-' + currentTab);
+
+    // 버튼 상태 즉시 변경
     $('.tab-btn').removeClass('active');
-    $('.tab-pane').removeClass('active');
-
     $('.tab-btn[data-tab="' + tabId + '"]').addClass('active');
-    $('#tab-' + tabId).addClass('active');
 
-    // 열려있던 FAQ 닫기
-    $('.faq-q[aria-expanded="true"]').attr('aria-expanded', 'false').siblings('.faq-a').slideUp(200);
+    // 현재 탭 퇴장 애니메이션
+    $currentPane.addClass(exitClass);
+
+    setTimeout(function () {
+      $currentPane.removeClass('active ' + exitClass);
+      $('#tab-' + tabId).addClass('active');
+      currentTab = tabId;
+      tabAnimating = false;
+      // 열려있던 FAQ 닫기
+      $('.faq-q[aria-expanded="true"]').attr('aria-expanded', 'false').siblings('.faq-a').slideUp(200);
+    }, 250);
   }
 
   $('.tab-btn').on('click', function () {
@@ -124,8 +144,10 @@ $(function () {
     }
   });
 
-  /* ── 스크롤 탑 버튼 ── */
+  /* ── 헤더 스크롤 감지 ── */
   $(window).on('scroll', function () {
+    var scrolled = $(this).scrollTop() > 50;
+    $('.info-header').toggleClass('scrolled', scrolled);
     $('#scrollTop').toggleClass('visible', $(this).scrollTop() > 300);
   });
   $('#scrollTop').on('click', function () {

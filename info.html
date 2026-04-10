@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="assets/css/font.css">
   <link rel="stylesheet" href="assets/css/info.css">
   <script src="https://kit.fontawesome.com/7cffe83019.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 </head>
 
 <body>
@@ -27,8 +28,8 @@
       </div>
       <ul class="mob-menu">
         <li><a href="about.html" class="mob-link">회사소개</a></li>
-        <li><a href="#" class="mob-link">구매 서비스</a></li>
-        <li><a href="#" class="mob-link">견적 상담</a></li>
+        <li><a href="index.html#service" class="mob-link">구매 서비스</a></li>
+        <li><a href="index.html#contact" class="mob-link">견적 상담</a></li>
         <li class="mob-has-sub">
           <a href="info.html" class="mob-link">컴퓨터 정보 <i class="fa-solid fa-chevron-down mob-arrow"></i></a>
           <ul class="mob-sub">
@@ -38,7 +39,7 @@
             <li><a href="info.html?tab=storage">저장장치</a></li>
           </ul>
         </li>
-        <li><a href="#" class="mob-link">오시는길</a></li>
+        <li><a href="index.html#contact" class="mob-link">오시는길</a></li>
       </ul>
     </nav>
 
@@ -55,8 +56,8 @@
         <nav class="gnb">
           <ul class="menu">
             <li class="menu-item"><a href="about.html">회사소개</a></li>
-            <li class="menu-item"><a href="#">구매 서비스</a></li>
-            <li class="menu-item"><a href="#">견적상담</a></li>
+            <li class="menu-item"><a href="index.html#service">구매 서비스</a></li>
+            <li class="menu-item"><a href="index.html#contact">견적상담</a></li>
             <li class="menu-item has-sub active-menu">
               <a href="info.html">컴퓨터 정보</a>
               <ul class="sub-menu">
@@ -66,7 +67,7 @@
                 <li><a href="info.html?tab=storage">저장장치</a></li>
               </ul>
             </li>
-            <li class="menu-item"><a href="#">오시는길</a></li>
+            <li class="menu-item"><a href="index.html#contact">오시는길</a></li>
           </ul>
         </nav>
 
@@ -117,7 +118,7 @@
           <!-- CPU가 하는일 -->
           <section class="info-section">
             <div class="container info-section-inner">
-              <div class="info-text-side">
+              <div class="info-text-side" data-aos="fade-right">
                 <h2 class="info-section-title">CPU가 하는일</h2>
                 <p class="info-section-desc">
                   CPU는 컴퓨터의 두뇌 역할을 하는 가장 핵심적인 부품이에요.<br>
@@ -126,7 +127,7 @@
                   계산하고 판단한 후 실행하도록 지시합니다.
                 </p>
               </div>
-              <div class="info-img-side">
+              <div class="info-img-side" data-aos="fade-left">
                 <img src="assets/img/CPU1.png" alt="">
               </div>
             </div>
@@ -135,10 +136,10 @@
           <!-- 인텔? 라이젠? -->
           <section class="info-section info-section-alt">
             <div class="container info-section-inner">
-              <div class="info-img-side">
+              <div class="info-img-side" data-aos="fade-right">
                 <img src="assets/img/CPU2.png" alt="">
               </div>
-              <div class="info-text-side">
+              <div class="info-text-side" data-aos="fade-left">
                 <h2 class="info-section-title">인텔? 라이젠?</h2>
                 <p class="info-section-desc">
                   CPU를 알아보다 보면 "인텔이야?", "라이젠이야?"라는 말을,<br>
@@ -159,9 +160,9 @@
           <!-- FAQ -->
           <section class="info-faq">
             <div class="container">
-              <h2 class="info-faq-title">FAQ</h2>
+              <h2 class="info-faq-title" data-aos="fade-up">FAQ</h2>
               <ul class="faq-list">
-                <li class="faq-item">
+                <li class="faq-item" data-aos="fade-up" data-aos-delay="0">
                   <button class="faq-q" aria-expanded="false">
                     <span>코어와 스레드가 무슨 뜻인가요?</span>
                     <i class="fa-solid fa-chevron-right faq-icon"></i>
@@ -172,7 +173,7 @@
                     코어가 많을수록 빠르고, 스레드가 많을수록 여러 작업을 동시에 처리하기 좋습니다.</p>
                   </div>
                 </li>
-                <li class="faq-item">
+                <li class="faq-item" data-aos="fade-up" data-aos-delay="100">
                   <button class="faq-q" aria-expanded="false">
                     <span>인텔과 라이젠중에 뭐가 더 좋나요?</span>
                     <i class="fa-solid fa-chevron-right faq-icon"></i>
@@ -184,7 +185,7 @@
                     용도와 예산에 따라 선택하는 것을 권장합니다.</p>
                   </div>
                 </li>
-                <li class="faq-item">
+                <li class="faq-item" data-aos="fade-up" data-aos-delay="200">
                   <button class="faq-q" aria-expanded="false">
                     <span>CPU만 바꾸면 컴퓨터가 빨라지나요?</span>
                     <i class="fa-solid fa-chevron-right faq-icon"></i>
@@ -195,7 +196,7 @@
                     또한 새 CPU는 현재 메인보드와 소켓 규격이 맞아야 교체가 가능합니다.</p>
                   </div>
                 </li>
-                <li class="faq-item">
+                <li class="faq-item" data-aos="fade-up" data-aos-delay="300">
                   <button class="faq-q" aria-expanded="false">
                     <span>사무용·가정용 PC에도 고성능 CPU가 필요한가요?</span>
                     <i class="fa-solid fa-chevron-right faq-icon"></i>
@@ -219,7 +220,7 @@
           <!-- RAM이 하는일 -->
           <section class="info-section">
             <div class="container info-section-inner">
-              <div class="info-text-side">
+              <div class="info-text-side" data-aos="fade-right">
                 <h2 class="info-section-title">RAM이 하는일</h2>
                 <p class="info-section-desc">
                   RAM(램)은 컴퓨터의 책상이라고 보시면 됩니다.<br>
@@ -229,7 +230,7 @@
                   지금 당장 사용 중인 것들을 올려두는 공간이 RAM(램)입니다.
                 </p>
               </div>
-              <div class="info-img-side">
+              <div class="info-img-side" data-aos="fade-left">
                   <img src="assets/img/RAM1.png" alt="">
               </div>
             </div>
@@ -238,12 +239,12 @@
           <!-- DDR4 vs DDR5 -->
           <section class="info-section info-section-alt">
             <div class="container info-section-inner">
-              <div class="info-img-side">
+              <div class="info-img-side" data-aos="fade-right">
                 <div class="info-img-box info-img-brands">
                    <img src="assets/img/RAM2.png" alt="">
                 </div>
               </div>
-              <div class="info-text-side">
+              <div class="info-text-side" data-aos="fade-left">
                 <h2 class="info-section-title">RAM의 특징</h2>
                 <p class="info-section-desc">
                   RAM(램)은 일시적인 일을 하고 지나는 친구입니다.<br>
@@ -260,9 +261,9 @@
           <!-- FAQ -->
           <section class="info-faq">
             <div class="container">
-              <h2 class="info-faq-title">FAQ</h2>
+              <h2 class="info-faq-title" data-aos="fade-up">FAQ</h2>
               <ul class="faq-list">
-                <li class="faq-item">
+                <li class="faq-item" data-aos="fade-up" data-aos-delay="0">
                   <button class="faq-q" aria-expanded="false">
                     <span>RAM 용량은 얼마나 필요할까요?</span>
                     <i class="fa-solid fa-chevron-right faq-icon"></i>
@@ -272,7 +273,7 @@
                     영상 편집·디자인 등 전문 작업은 32GB 이상을 권장합니다.</p>
                   </div>
                 </li>
-                <li class="faq-item">
+                <li class="faq-item" data-aos="fade-up" data-aos-delay="100">
                   <button class="faq-q" aria-expanded="false">
                     <span>RAM 용량이 크면 무조건 빠른가요?</span>
                     <i class="fa-solid fa-chevron-right faq-icon"></i>
@@ -283,7 +284,7 @@
                       가격대를 잘맞춰 밸런스를 찾는게 좋습니다.</p>
                   </div>
                 </li>
-                <li class="faq-item">
+                <li class="faq-item" data-aos="fade-up" data-aos-delay="200">
                   <button class="faq-q" aria-expanded="false">
                     <span>RAM 용량이 부족하면 어떻게 되나요?</span>
                     <i class="fa-solid fa-chevron-right faq-icon"></i>
@@ -293,7 +294,7 @@
                       렉걸리면서 멈추게 되는데 그걸 프리징(멈춤)현상이라 불러요. </p>
                   </div>
                 </li>
-                <li class="faq-item">
+                <li class="faq-item" data-aos="fade-up" data-aos-delay="300">
                   <button class="faq-q" aria-expanded="false">
                     <span>RAM은 1개로 쓰는 것과 2개로 쓰는 것의 차이가 있나요?</span>
                     <i class="fa-solid fa-chevron-right faq-icon"></i>
@@ -316,7 +317,7 @@
           <!-- 그래픽카드가 하는일 -->
           <section class="info-section">
             <div class="container info-section-inner">
-              <div class="info-text-side">
+              <div class="info-text-side" data-aos="fade-right">
                 <h2 class="info-section-title">그래픽카드가 하는일</h2>
                 <p class="info-section-desc">
                   그래픽카드는 사람으로 따지면 눈과 같은 존재입니다.<br>
@@ -328,7 +329,7 @@
                   화면은 더 부드럽고 또렷하게 됩니다.
                 </p>
               </div>
-              <div class="info-img-side">
+              <div class="info-img-side" data-aos="fade-left">
                   <img src="assets/img/GPU1.png" alt="">
               </div>
             </div>
@@ -337,14 +338,14 @@
           <!-- NVIDIA vs AMD -->
           <section class="info-section info-section-alt">
             <div class="container info-section-inner">
-              <div class="info-img-side">
+              <div class="info-img-side" data-aos="fade-right">
                 <div class="info-img-box info-img-brands">
                   <div class="gpu-compare">
                   <img src="assets/img/GPU2.png" alt="">
                   </div>
                 </div>
               </div>
-              <div class="info-text-side">
+              <div class="info-text-side" data-aos="fade-left">
                 <h2 class="info-section-title">그래픽카드 중요함?</h2>
                 <p class="info-section-desc">
                   우리에게 눈이 있듯이,<br>
@@ -363,9 +364,9 @@
           <!-- FAQ -->
           <section class="info-faq">
             <div class="container">
-              <h2 class="info-faq-title">FAQ</h2>
+              <h2 class="info-faq-title" data-aos="fade-up">FAQ</h2>
               <ul class="faq-list">
-                <li class="faq-item">
+                <li class="faq-item" data-aos="fade-up" data-aos-delay="0">
                   <button class="faq-q" aria-expanded="false">
                     <span>내장 그래픽과 외장 그래픽의 차이는 무엇인가요?</span>
                     <i class="fa-solid fa-chevron-right faq-icon"></i>
@@ -377,7 +378,7 @@
                     게임, 디자인, 영상 편집 등 고성능 작업을 한다면 외장 그래픽카드를 추천합니다.</p>
                   </div>
                 </li>
-                <li class="faq-item">
+                <li class="faq-item" data-aos="fade-up" data-aos-delay="100">
                   <button class="faq-q" aria-expanded="false">
                     <span>게임용 그래픽카드는 어떻게 골라야 하나요?</span>
                     <i class="fa-solid fa-chevron-right faq-icon"></i>
@@ -388,7 +389,7 @@
                     파워 서플라이 용량과 케이스 공간(카드 길이)도 꼭 확인해야 합니다.</p>
                   </div>
                 </li>
-                <li class="faq-item">
+                <li class="faq-item" data-aos="fade-up" data-aos-delay="200">
                   <button class="faq-q" aria-expanded="false">
                     <span>엔비디아와 라데온이 뭔가요?</span>
                     <i class="fa-solid fa-chevron-right faq-icon"></i>
@@ -399,7 +400,7 @@
                     두 브랜드 모두 게이밍부터 전문 작업용까지 다양한 제품을 출시합니다.</p>
                   </div>
                 </li>
-                <li class="faq-item">
+                <li class="faq-item" data-aos="fade-up" data-aos-delay="300">
                   <button class="faq-q" aria-expanded="false">
                     <span>설치할때 파워는 넉넉해야하나요?</span>
                     <i class="fa-solid fa-chevron-right faq-icon"></i>
@@ -424,7 +425,7 @@
           <!-- 저장장치가 하는일 -->
           <section class="info-section">
             <div class="container info-section-inner">
-              <div class="info-text-side">
+              <div class="info-text-side" data-aos="fade-right">
                 <h2 class="info-section-title">저장장치가 하는일</h2>
                 <p class="info-section-desc">
                   저장장치는<br>
@@ -436,7 +437,7 @@
                   이 저장장치 덕분입니다.
                 </p>
               </div>
-              <div class="info-img-side">
+              <div class="info-img-side" data-aos="fade-left">
                 <img src="assets/img/sto1.png" alt="">
               </div>
             </div>
@@ -445,10 +446,10 @@
           <!-- SSD vs HDD -->
           <section class="info-section info-section-alt">
             <div class="container info-section-inner">
-              <div class="info-img-side">
+              <div class="info-img-side" data-aos="fade-right">
                 <img src="assets/img/sto2.png" alt="">
               </div>
-              <div class="info-text-side">
+              <div class="info-text-side" data-aos="fade-left">
                 <h2 class="info-section-title">SSD? HDD?</h2>
                 <p class="info-section-desc">
                   SSD와 HDD는 이름은 많이 들어봤지만,<br>
@@ -472,9 +473,9 @@
           <!-- FAQ -->
           <section class="info-faq">
             <div class="container">
-              <h2 class="info-faq-title">FAQ</h2>
+              <h2 class="info-faq-title" data-aos="fade-up">FAQ</h2>
               <ul class="faq-list">
-                <li class="faq-item">
+                <li class="faq-item" data-aos="fade-up" data-aos-delay="0">
                   <button class="faq-q" aria-expanded="false">
                     <span>SATA SSD와 NVMe SSD는 무엇이 다른가요?</span>
                     <i class="fa-solid fa-chevron-right faq-icon"></i>
@@ -485,7 +486,7 @@
                     다만 메인보드가 NVMe를 지원해야 사용이 가능합니다.</p>
                   </div>
                 </li>
-                <li class="faq-item">
+                <li class="faq-item" data-aos="fade-up" data-aos-delay="100">
                   <button class="faq-q" aria-expanded="false">
                     <span>윈도우를 설치한다면 어디에 설치하는게 좋은가요?</span>
                     <i class="fa-solid fa-chevron-right faq-icon"></i>
@@ -497,7 +498,7 @@
                     HDD는 대용량 파일 보관용으로 사용하는 것이 가장 효율적입니다.</p>
                   </div>
                 </li>
-                <li class="faq-item">
+                <li class="faq-item" data-aos="fade-up" data-aos-delay="200">
                   <button class="faq-q" aria-expanded="false">
                     <span>저장장치를 여러 개 설치해도 되나요?</span>
                     <i class="fa-solid fa-chevron-right faq-icon"></i>
@@ -508,7 +509,7 @@
                     케이스의 베이 개수와 메인보드 커넥터 수를 미리 확인하세요.</p>
                   </div>
                 </li>
-                <li class="faq-item">
+                <li class="faq-item" data-aos="fade-up" data-aos-delay="300">
                   <button class="faq-q" aria-expanded="false">
                     <span>저장장치 용량은 얼마나 필요할까요?</span>
                     <i class="fa-solid fa-chevron-right faq-icon"></i>
@@ -582,6 +583,14 @@
 
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/info.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 700,
+      once: true,
+      offset: 80
+    });
+  </script>
 
 </body>
 
