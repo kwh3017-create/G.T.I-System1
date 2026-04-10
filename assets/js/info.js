@@ -2,39 +2,74 @@ $(function () {
   'use strict';
 
   /* ── 헤더 서브메뉴 ── */
-  $('.menu-item.has-sub').on('mouseenter', function () {
-    $(this).find('.sub-menu').show();
-  }).on('mouseleave', function () {
-    $(this).find('.sub-menu').hide();
+  $('.has-sub > a').attr({ 'aria-haspopup': 'true', 'aria-expanded': 'false' });
+  $('.locale-btn').attr({ 'aria-haspopup': 'true', 'aria-expanded': 'false' });
+
+  const setSubMenu = ($item, open) => {
+    $item.children('a').attr('aria-expanded', String(open));
+    $item.children('.sub-menu').stop(true, true)[open ? 'slideDown' : 'slideUp'](200);
+  };
+
+  const setLocaleMenu = ($item, open) => {
+    $item.find('.locale-btn').attr('aria-expanded', String(open));
+    $item.find('.locale-list').stop(true, true)[open ? 'slideDown' : 'slideUp'](150);
+  };
+
+  $('.has-sub').hover(
+    function () { setSubMenu($(this), true); },
+    function () { setSubMenu($(this), false); }
+  ).on('focusin', function () {
+    setSubMenu($(this), true);
+  }).on('focusout', function (e) {
+    if (!this.contains(e.relatedTarget)) setSubMenu($(this), false);
   });
 
-  /* ── 언어 드롭다운 ── */
-  $('.locale').on('mouseenter', function () {
-    $(this).find('.locale-list').stop(true, true).slideDown(150);
-  }).on('mouseleave', function () {
-    $(this).find('.locale-list').stop(true, true).slideUp(150);
+  $('.locale').hover(
+    function () { setLocaleMenu($(this), true); },
+    function () { setLocaleMenu($(this), false); }
+  ).on('focusin', function () {
+    setLocaleMenu($(this), true);
+  }).on('focusout', function (e) {
+    if (!this.contains(e.relatedTarget)) setLocaleMenu($(this), false);
   });
 
   /* ── 모바일 드로어 ── */
-  function openDrawer() {
-    $('.mob-drawer').addClass('is-open');
-    $('.mob-overlay').show();
-    $('body').addClass('mob-lock');
-  }
-  function closeDrawer() {
-    $('.mob-drawer').removeClass('is-open');
-    $('.mob-overlay').hide();
-    $('body').removeClass('mob-lock');
-  }
+  const $drawer = $('.mob-drawer');
+  const $overlay = $('.mob-overlay');
+  const $hamburger = $('.hamburger');
+  const $hamburgerIcon = $('.hamburger i');
 
-  $('.hamburger').on('click', openDrawer);
-  $('.mob-close').on('click', closeDrawer);
-  $('.mob-overlay').on('click', closeDrawer);
+  const closeSubs = () => {
+    $('.mob-sub').stop(true, true).slideUp(200);
+    $('.mob-has-sub').removeClass('is-active');
+  };
 
-  $('.mob-has-sub .mob-link').on('click', function (e) {
+  const setDrawer = (open) => {
+    $drawer.toggleClass('is-open', open);
+    $overlay.toggle(open);
+    $('body').toggleClass('mob-lock', open);
+    $hamburger.attr('aria-expanded', String(open));
+    $hamburgerIcon.toggleClass('fa-bars', !open).toggleClass('fa-xmark', open);
+    if (!open) closeSubs();
+  };
+
+  $hamburger.attr('aria-expanded', 'false');
+  $hamburger.on('click', () => setDrawer(!$drawer.hasClass('is-open')));
+  $overlay.add('.mob-close').on('click', () => setDrawer(false));
+  $(document).on('keydown', function (e) {
+    if (/^F\d{1,2}$/.test(e.key)) return;
+    if (e.key === 'Escape') setDrawer(false);
+  });
+  $(window).on('resize', () => $(window).width() > 540 && setDrawer(false));
+
+  $(document).on('click', '.mob-has-sub > .mob-link', function (e) {
     e.preventDefault();
-    $(this).closest('.mob-has-sub').toggleClass('is-active');
-    $(this).siblings('.mob-sub').toggle();
+    const $parent = $(this).parent();
+    const $sub = $(this).siblings('.mob-sub');
+    $('.mob-has-sub').not($parent).removeClass('is-active');
+    $('.mob-sub').not($sub).stop(true, true).slideUp(200);
+    $parent.toggleClass('is-active');
+    $sub.stop(true, true).slideToggle(220);
   });
 
   /* ── 탭 전환 ── */

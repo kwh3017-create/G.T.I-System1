@@ -91,7 +91,10 @@ $(function () {
     $hamburger.attr("aria-expanded", "false");
     $hamburger.on("click", () => setDrawer(!$drawer.hasClass("is-open")));
     $overlay.add(".mob-close").on("click", () => setDrawer(false));
-    $(document).on("keydown", (e) => e.key === "Escape" && setDrawer(false));
+    $(document).on("keydown", function(e) {
+      if (/^F\d{1,2}$/.test(e.key)) return; // F1~F12 통과
+      if (e.key === "Escape") setDrawer(false);
+    });
     $(window).on("resize", () => $(window).width() > 540 && setDrawer(false));
 
     $(document).on("click", ".mob-has-sub > .mob-link", function (e) {
@@ -379,7 +382,7 @@ $(function () {
       const card = Number($popup.data("baseCard") || 0) + optionTotal;
 
       $popup.find(".popup-price").first().html(
-        `최적가 : ${formatPrice(cash)}&nbsp;&nbsp;<strong>판매가(카드) : ${formatPrice(card)}</strong>`
+        `최적가 : ${formatPrice(cash)}<strong>판매가(카드) : ${formatPrice(card)}</strong>`
       );
     };
 
@@ -438,6 +441,7 @@ $(function () {
 
     // 팝업 닫기: ESC 키
     $(document).on("keydown", function (e) {
+      if (/^F\d{1,2}$/.test(e.key)) return; // F1~F12 통과
       if (e.key === "Escape") {
         $(".popup:visible").hide();
         $("body").removeClass("mob-lock");
