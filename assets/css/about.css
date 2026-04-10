@@ -629,11 +629,11 @@
   .mission-card h3 { font-size: 16px; }
   .mission-card p { font-size: 15px; }
 
-  /* history: 2열 슬라이더 */
+  /* history: 2열 슬라이더 */t
   .about-history { padding: 48px 0; }
-  .history-title { font-size: 20px; }
+  .history-title { font-size: 36px; }
   .history-track { width: calc(100% * 3); }
-  .history-year { font-size: 22px; }
+  .history-year { font-size: 42px; }
   .history-list li { font-size: 15px; }
 
   .about-location { padding: 48px 0; }
@@ -671,7 +671,7 @@
   /* history: 1열 슬라이더 */
   .about-history { padding: 36px 0; }
   .about-history-inner { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
-  .history-title { font-size: 18px; }
+  .history-title { font-size: 28px; }
   .history-track { width: calc(100% * 6); }
   .history-year-col {
     flex: 0 0 calc(100% / 6);
@@ -680,8 +680,8 @@
     padding: 20px 0;
   }
   .history-year-col:last-child { border-bottom: none; }
-  .history-year { font-size: 20px; }
-  .history-list li { font-size: 15px; }
+  .history-year { font-size: 36px; }
+  .history-list li { font-size: 14px; }
   .history-nav-btn { width: 40px; height: 40px; font-size: 15px; }
 
   /* location: 세로 스택 */
@@ -739,9 +739,9 @@
   .mission-card p { font-size: 15px; text-align: left; }
 
   .about-history { padding: 100px 0; }
-  .history-title { font-size: 17px; }
-  .history-year { font-size: 18px; }
-  .history-list li { font-size: 15px; }
+  .history-title { font-size: 30px; }
+  .history-year { font-size: 26px; }
+  .history-list li { font-size: 14px; }
 
   .about-location { padding: 28px 0; }
   .location-map { height: 210px; }
