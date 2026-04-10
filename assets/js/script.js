@@ -220,77 +220,81 @@ $(function () {
 
     if (!$track.length || !$prev.length || !$next.length) return;
 
-    const $cards = () => $track.children(".service-card");
-    const totalN = $cards().length;
-    if (totalN <= 1) return;
+    const $origCards = $track.children(".service-card");
+    const N = $origCards.length;
+    if (N <= 1) return;
 
-    $cards().each(function (i) { $(this).attr("data-svc-idx", i); });
+    // 앞뒤에 카드 복제본을 붙여 진짜 무한 루프 구현
+    // 구조: [복제N장] [원본N장] [복제N장]
+    $origCards.clone(true).appendTo($track);   // 뒤쪽 복제
+    $origCards.clone(true).prependTo($track);  // 앞쪽 복제
+
+    let currentIdx = N; // 원본 첫 번째 카드부터 시작
+    let moving = false;
+    let timer = null;
+    const duration = 600;
+
+    // currentIdx → 실제 원본 카드 번호 (0 ~ N-1)
+    const realIdx = () => ((currentIdx - N) % N + N) % N;
 
     const moveIndicator = () => {
-      if (!$prog.length || !$ind.length || totalN <= 1) return;
-      const cur = parseInt($cards().first().attr("data-svc-idx") || "0", 10);
+      if (!$prog.length || !$ind.length) return;
       const maxX = Math.max(0, $prog.width() - $ind.outerWidth());
-      const t = cur / Math.max(1, totalN - 1);
+      const t = realIdx() / Math.max(1, N - 1);
       $ind.css("transform", `translate(${maxX * t}px, -50%)`);
     };
 
-    let moving = false;
-    let timer = null;
-    const duration = 650;
-
-    const setTransition = (on) => {
-      $track.css("transition", on ? `transform ${duration}ms ease` : "none");
-    };
-
     const stepPx = () => {
-      const $first = $cards().first();
+      const $first = $track.children(".service-card").first();
       if (!$first.length) return 0;
       return $first.outerWidth() + getFlexGap($track[0]);
     };
 
+    const setTransition = (on) => {
+      $track.css("transition", on ? `transform ${duration}ms cubic-bezier(.25,.46,.45,.94)` : "none");
+    };
+
+    const goTo = (idx, animate) => {
+      setTransition(animate);
+      $track.css("transform", `translateX(-${idx * stepPx()}px)`);
+    };
+
+    // 초기 위치 설정 (원본 첫 카드)
+    goTo(currentIdx, false);
+    moveIndicator();
+
     const next = () => {
       if (moving) return;
       moving = true;
+      currentIdx++;
+      goTo(currentIdx, true);
+      moveIndicator();
 
-      const d = stepPx();
-      if (!d) { moving = false; return; }
-
-      setTransition(true);
-      $track.css("transform", `translateX(-${d}px)`);
-
-      $track.one("transitionend webkitTransitionEnd", function () {
-        $cards().first().appendTo($track);
-
-        setTransition(false);
-        $track.css("transform", "translateX(0)");
-        $track[0].offsetHeight;
-        setTransition(true);
-
-        moveIndicator();
+      setTimeout(() => {
+        // 뒤쪽 복제 구간에 진입했으면 원본 구간으로 순간이동
+        if (currentIdx >= N * 2) {
+          currentIdx = N;
+          goTo(currentIdx, false);
+        }
         moving = false;
-      });
+      }, duration + 30);
     };
 
     const prev = () => {
       if (moving) return;
       moving = true;
+      currentIdx--;
+      goTo(currentIdx, true);
+      moveIndicator();
 
-      const d = stepPx();
-      if (!d) { moving = false; return; }
-
-      $cards().last().prependTo($track);
-
-      setTransition(false);
-      $track.css("transform", `translateX(-${d}px)`);
-      $track[0].offsetHeight;
-
-      setTransition(true);
-      $track.css("transform", "translateX(0)");
-
-      $track.one("transitionend webkitTransitionEnd", function () {
-        moveIndicator();
+      setTimeout(() => {
+        // 앞쪽 복제 구간에 진입했으면 원본 구간으로 순간이동
+        if (currentIdx < N) {
+          currentIdx = N * 2 - 1;
+          goTo(currentIdx, false);
+        }
         moving = false;
-      });
+      }, duration + 30);
     };
 
     const setAuto = (on) => {
@@ -303,15 +307,9 @@ $(function () {
     $(".service-right").hover(() => setAuto(false), () => setAuto(true));
 
     $(window).on("resize", () => {
-      setTransition(false);
-      $track.css("transform", "translateX(0)");
-      $track[0].offsetHeight;
-      setTransition(true);
-      moveIndicator();
+      goTo(currentIdx, false);
     });
 
-    setTransition(true);
-    moveIndicator();
     setAuto(true);
   };
 

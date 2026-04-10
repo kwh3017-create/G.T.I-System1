@@ -99,14 +99,14 @@
 }
 
 .sub-title {
-  font-size: 42px;
+  font-size: 50px;
   font-weight: 800;
   color: #fff;
   line-height: 1.2;
 }
 
 .sub-desc {
-  font-size: 15px;
+  font-size: 18px;
   color: rgba(255,255,255,.80);
   line-height: 1.7;
 }
@@ -116,6 +116,7 @@
 .about-intro {
   padding: 100px 0;
   background: #fff;
+  overflow: hidden;
 }
 
 .about-intro-inner {
@@ -126,9 +127,11 @@
 }
 
 .about-imgs {
-  flex: 0 0 520px;
+  flex: 0 1 520px;
+  min-width: 0;
   position: relative;
   height: 420px;
+  overflow: hidden;
 }
 
 .about-img-bg {
@@ -202,6 +205,7 @@
 
 .about-text {
   flex: 0 1 480px;
+  min-width: 0;
 }
 
 .about-text img {
@@ -218,7 +222,7 @@
 }
 
 .about-title {
-  font-size: 36px;
+  font-size: 48px;
   font-weight: 800;
   line-height: 1.35;
   color: var(--fontmain);
@@ -226,9 +230,10 @@
 }
 
 .about-desc {
-  font-size: 16px;
+  font-size: 28px;
   color: var(--fontsub);
-  line-height: 1.9;
+  line-height: 1.5;
+  letter-spacing: -2%;
 }
 
 /* Mission Section
@@ -239,14 +244,14 @@
 }
 
 .mission-eyebrow {
-  font-size: 15px;
+  font-size: 30px;
   color: var(--fontsub);
   margin-bottom: 10px;
   text-align: center;
 }
 
 .mission-title {
-  font-size: 32px;
+  font-size: 48px;
   font-weight: 800;
   color: var(--fontmain);
   text-align: center;
@@ -292,14 +297,14 @@
 }
 
 .mission-card h3 {
-  font-size: 18px;
+  font-size: 30px;
   font-weight: 700;
   color: var(--fontmain);
   text-align: center;
 }
 
 .mission-card p {
-  font-size: 14px;
+  font-size: 18px;
   color: var(--fontsub);
   line-height: 1.8;
   text-align: center;
@@ -321,7 +326,7 @@
 }
 
 .history-title {
-  font-size: 30px;
+  font-size: 42px;
   font-weight: 800;
   line-height: 1.5;
   color: var(--fontmain);
@@ -380,7 +385,7 @@
 }
 
 .history-year {
-  font-size: 28px;
+  font-size: 42px;
   font-weight: 800;
   color: var(--fontmain);
   margin-bottom: 24px;
@@ -393,7 +398,7 @@
 }
 
 .history-list li {
-  font-size: 14px;
+  font-size: 18px;
   color: var(--fontsub);
   line-height: 1.7;
   padding-left: 14px;
