@@ -274,7 +274,14 @@
 
   .slide-cont1,
   .slide-cont2,
-  .slide-cont3 { left: 5%; gap: 10px; max-width: 260px; }
+  .slide-cont3 {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 10px;
+    max-width: 280px;
+    align-items: center;
+    text-align: center;
+  }
   .slide-main { font-size: 24px; }
   .slide-sub { font-size: 14px; line-height: 1.5; }
   .slide-cta { width: 110px; height: 36px; }
@@ -496,8 +503,13 @@
    }
 
   .slide-cont1,.slide-cont2,.slide-cont3 {
-     left: 5%; gap: 8px; max-width: 220px;
-     }
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 8px;
+    max-width: 240px;
+    align-items: center;
+    text-align: center;
+  }
 
   .slide-main { 
     font-size: 20px;
