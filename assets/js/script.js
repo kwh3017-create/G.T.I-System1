@@ -505,11 +505,16 @@ $(function () {
     let currentIndex = sections.findIndex((section) => section.offsetTop >= window.pageYOffset - 1);
     if (currentIndex < 0) currentIndex = 0;
 
+    const updateHeaderBySection = (index) => {
+      $(".header").toggleClass("scrolled", index > 0);
+    };
+
     const scrollToSection = (index) => {
       index = Math.max(0, Math.min(sections.length - 1, index));
       if (isAnimating || index === currentIndex) return;
       isAnimating = true;
       currentIndex = index;
+      updateHeaderBySection(index);
       gsap.to(window, {
         duration: 0.9,
         scrollTo: { y: sections[index], autoKill: false },
