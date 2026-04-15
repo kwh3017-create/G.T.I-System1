@@ -605,6 +605,7 @@
     max-width: 200px;
     gap: 6px;
   }
+  .pc-br{display: block;}
 
   .slide-main { font-size: 17px; }
   .slide-sub { font-size: 12px; }
